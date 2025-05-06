@@ -15,7 +15,7 @@ MonoBehaviour:
   <Inactive>k__BackingField: 0
   categories:
   - Name: Game
-    Namespace: Atomic.Contexts
+    Namespace: testAtomic
     DirectoryPath: Assets/GameExample/Scripts/Codegen
     ClassSuffix: ContextAPI
     Imports:
@@ -23,19 +23,14 @@ MonoBehaviour:
     - Atomic.Elements
     - System.Collections.Generic
     - GameExample.Engine
+    - testAtomic
     items:
+    - id: 1
+      name: PlayerInput
+      type: MoveInput
     - id: 5
-      name: PlayerMap
-      type: Dictionary<TeamType, IContext>
-    - id: 10
-      name: GameCountdown
-      type: Countdown
-    - id: 13
-      name: CoinSystemData
-      type: CoinSystemData
-    - id: 7
-      name: WorldTransform
-      type: Transform
+      name: PlayerShoot
+      type: ShootInput
   - Name: Player
     Namespace: Atomic.Contexts
     DirectoryPath: Assets/GameExample/Scripts/Codegen
@@ -45,6 +40,7 @@ MonoBehaviour:
     - Atomic.Elements
     - GameExample.Engine
     - System.Collections.Generic
+    - testAtomic
     items:
     - id: 3
       name: MoveableUnitsFilter
