@@ -2,13 +2,13 @@
 * Code generation. Don't modify! 
 **/
 
-using UnityEngine;
-using Atomic.Entities;
 using System.Runtime.CompilerServices;
 using Atomic.Elements;
+using Atomic.Entities;
 using Atomic.Extensions;
 using GameExample.Engine;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace Atomic.Entities
 {

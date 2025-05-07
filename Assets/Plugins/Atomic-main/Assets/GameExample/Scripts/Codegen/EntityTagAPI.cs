@@ -2,8 +2,8 @@
 * Code generation. Don't modify! 
 **/
 
-using UnityEngine;
 using Atomic.Entities;
+using UnityEngine;
 
 namespace Atomic.Entities
 {

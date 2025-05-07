@@ -17,11 +17,9 @@ namespace testAtomic
         ///Keys
         public const int BulletPrefab = 9; // SceneEntity
         public const int ShootPoint = 10; // Transform
-        public const int Coldown = 12; // ReactiveVariable<float>
-        public const int CanShoot = 13; // IVariable<bool>
-        public const int OnShoot = 15; // IEvent<IEntity>
-        public const int OnColdownEnded = 18; // IEvent<IEntity>
-        public const int OnShootFired = 19; // System.Action
+        public const int CanShoot = 13; // ReactiveVariable<bool>
+        public const int OnShootRequest = 15; // IEvent
+        public const int OnShootFired = 19; // IEvent
 
 
         ///Extensions
@@ -62,31 +60,13 @@ namespace testAtomic
         public static void SetShootPoint(this IEntity obj, Transform value) => obj.SetValue(ShootPoint, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ReactiveVariable<float> GetColdown(this IEntity obj) => obj.GetValue<ReactiveVariable<float>>(Coldown);
+        public static ReactiveVariable<bool> GetCanShoot(this IEntity obj) => obj.GetValue<ReactiveVariable<bool>>(CanShoot);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetColdown(this IEntity obj, out ReactiveVariable<float> value) => obj.TryGetValue(Coldown, out value);
+        public static bool TryGetCanShoot(this IEntity obj, out ReactiveVariable<bool> value) => obj.TryGetValue(CanShoot, out value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddColdown(this IEntity obj, ReactiveVariable<float> value) => obj.AddValue(Coldown, value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasColdown(this IEntity obj) => obj.HasValue(Coldown);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool DelColdown(this IEntity obj) => obj.DelValue(Coldown);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetColdown(this IEntity obj, ReactiveVariable<float> value) => obj.SetValue(Coldown, value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IVariable<bool> GetCanShoot(this IEntity obj) => obj.GetValue<IVariable<bool>>(CanShoot);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetCanShoot(this IEntity obj, out IVariable<bool> value) => obj.TryGetValue(CanShoot, out value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddCanShoot(this IEntity obj, IVariable<bool> value) => obj.AddValue(CanShoot, value);
+        public static bool AddCanShoot(this IEntity obj, ReactiveVariable<bool> value) => obj.AddValue(CanShoot, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasCanShoot(this IEntity obj) => obj.HasValue(CanShoot);
@@ -95,52 +75,34 @@ namespace testAtomic
         public static bool DelCanShoot(this IEntity obj) => obj.DelValue(CanShoot);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetCanShoot(this IEntity obj, IVariable<bool> value) => obj.SetValue(CanShoot, value);
+        public static void SetCanShoot(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(CanShoot, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IEvent<IEntity> GetOnShoot(this IEntity obj) => obj.GetValue<IEvent<IEntity>>(OnShoot);
+        public static IEvent GetOnShootRequest(this IEntity obj) => obj.GetValue<IEvent>(OnShootRequest);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetOnShoot(this IEntity obj, out IEvent<IEntity> value) => obj.TryGetValue(OnShoot, out value);
+        public static bool TryGetOnShootRequest(this IEntity obj, out IEvent value) => obj.TryGetValue(OnShootRequest, out value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddOnShoot(this IEntity obj, IEvent<IEntity> value) => obj.AddValue(OnShoot, value);
+        public static bool AddOnShootRequest(this IEntity obj, IEvent value) => obj.AddValue(OnShootRequest, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasOnShoot(this IEntity obj) => obj.HasValue(OnShoot);
+        public static bool HasOnShootRequest(this IEntity obj) => obj.HasValue(OnShootRequest);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool DelOnShoot(this IEntity obj) => obj.DelValue(OnShoot);
+        public static bool DelOnShootRequest(this IEntity obj) => obj.DelValue(OnShootRequest);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetOnShoot(this IEntity obj, IEvent<IEntity> value) => obj.SetValue(OnShoot, value);
+        public static void SetOnShootRequest(this IEntity obj, IEvent value) => obj.SetValue(OnShootRequest, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IEvent<IEntity> GetOnColdownEnded(this IEntity obj) => obj.GetValue<IEvent<IEntity>>(OnColdownEnded);
+        public static IEvent GetOnShootFired(this IEntity obj) => obj.GetValue<IEvent>(OnShootFired);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetOnColdownEnded(this IEntity obj, out IEvent<IEntity> value) => obj.TryGetValue(OnColdownEnded, out value);
+        public static bool TryGetOnShootFired(this IEntity obj, out IEvent value) => obj.TryGetValue(OnShootFired, out value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddOnColdownEnded(this IEntity obj, IEvent<IEntity> value) => obj.AddValue(OnColdownEnded, value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasOnColdownEnded(this IEntity obj) => obj.HasValue(OnColdownEnded);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool DelOnColdownEnded(this IEntity obj) => obj.DelValue(OnColdownEnded);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetOnColdownEnded(this IEntity obj, IEvent<IEntity> value) => obj.SetValue(OnColdownEnded, value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static System.Action GetOnShootFired(this IEntity obj) => obj.GetValue<System.Action>(OnShootFired);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetOnShootFired(this IEntity obj, out System.Action value) => obj.TryGetValue(OnShootFired, out value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddOnShootFired(this IEntity obj, System.Action value) => obj.AddValue(OnShootFired, value);
+        public static bool AddOnShootFired(this IEntity obj, IEvent value) => obj.AddValue(OnShootFired, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasOnShootFired(this IEntity obj) => obj.HasValue(OnShootFired);
@@ -149,6 +111,6 @@ namespace testAtomic
         public static bool DelOnShootFired(this IEntity obj) => obj.DelValue(OnShootFired);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetOnShootFired(this IEntity obj, System.Action value) => obj.SetValue(OnShootFired, value);
+        public static void SetOnShootFired(this IEntity obj, IEvent value) => obj.SetValue(OnShootFired, value);
     }
 }

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Reflection;
 
 #if UNITY_EDITOR
-using UnityEditor;
-#endif
-
-#if ODIN_INSPECTOR
 using Sirenix.OdinInspector;
+#endif
+#if ODIN_INSPECTOR
+using UnityEditor;
 #endif
 
 using UnityEngine;

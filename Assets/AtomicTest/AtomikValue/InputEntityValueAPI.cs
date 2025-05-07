@@ -20,7 +20,6 @@ namespace testAtomic
         public const int RightDirectionInput = 3; // UnityEngine.KeyCode
         public const int DownDirectionInput = 4; // UnityEngine.KeyCode
         public const int MovableEntity = 5; // SceneEntity
-        public const int ShootInput = 14; // UnityEngine.KeyCode
 
 
         ///Extensions
@@ -113,23 +112,5 @@ namespace testAtomic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetMovableEntity(this IEntity obj, SceneEntity value) => obj.SetValue(MovableEntity, value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static UnityEngine.KeyCode GetShootInput(this IEntity obj) => obj.GetValue<UnityEngine.KeyCode>(ShootInput);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetShootInput(this IEntity obj, out UnityEngine.KeyCode value) => obj.TryGetValue(ShootInput, out value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddShootInput(this IEntity obj, UnityEngine.KeyCode value) => obj.AddValue(ShootInput, value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasShootInput(this IEntity obj) => obj.HasValue(ShootInput);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool DelShootInput(this IEntity obj) => obj.DelValue(ShootInput);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetShootInput(this IEntity obj, UnityEngine.KeyCode value) => obj.SetValue(ShootInput, value);
     }
 }

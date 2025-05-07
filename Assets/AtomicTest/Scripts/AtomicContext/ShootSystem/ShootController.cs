@@ -19,7 +19,7 @@ namespace testAtomic
 
         private void Shoot()
         {
-            _sceneEntity.GetOnShoot().Invoke(_sceneEntity);
+            _sceneEntity.GetOnShootRequest()?.Invoke();
         }
     }
 }

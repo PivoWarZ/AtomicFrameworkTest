@@ -1,9 +1,9 @@
 #if UNITY_EDITOR && ODIN_INSPECTOR
+using Atomic.Entities;
 using JetBrains.Annotations;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
-using Atomic.Entities;
 
 namespace Atomic.Entities
 {

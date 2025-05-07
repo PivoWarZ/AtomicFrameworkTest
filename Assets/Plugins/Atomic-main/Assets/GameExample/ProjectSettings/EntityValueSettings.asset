@@ -52,9 +52,6 @@ MonoBehaviour:
     - id: 5
       name: MovableEntity
       type: SceneEntity
-    - id: 14
-      name: ShootInput
-      type: UnityEngine.KeyCode
   - name: Rotate
     indexes:
     - id: 8
@@ -74,21 +71,15 @@ MonoBehaviour:
     - id: 10
       name: ShootPoint
       type: Transform
-    - id: 12
-      name: Coldown
-      type: ReactiveVariable<float>
     - id: 13
       name: CanShoot
-      type: IVariable<bool>
+      type: ReactiveVariable<bool>
     - id: 15
-      name: OnShoot
-      type: IEvent<IEntity>
-    - id: 18
-      name: OnColdownEnded
-      type: IEvent<IEntity>
+      name: OnShootRequest
+      type: IEvent
     - id: 19
       name: OnShootFired
-      type: System.Action
+      type: IEvent
   - name: HitPoints
     indexes:
     - id: 20
@@ -100,3 +91,14 @@ MonoBehaviour:
     - id: 22
       name: OnHitEvent
       type: IEvent<IEntity, int>
+  - name: Timer
+    indexes:
+    - id: 14
+      name: OnTimerStart
+      type: IEvent<float>
+    - id: 23
+      name: OnTimerEnd
+      type: IEvent
+    - id: 12
+      name: Cooldown
+      type: IValue<float>

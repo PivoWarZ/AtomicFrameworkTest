@@ -12,7 +12,7 @@ namespace testAtomic
         [SerializeField] private KeyCode _shootKey;
         void IContextUpdate.Update(IContext context, float deltaTime)
         {
-            if (Input.GetKey(_shootKey))
+            if (Input.GetKeyDown(_shootKey))
             {
                 OnShoot?.Invoke();
             }
