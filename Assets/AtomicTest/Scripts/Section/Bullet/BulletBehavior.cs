@@ -1,22 +1,25 @@
 using Atomic.Entities;
-using Atomic.Elements;
+using UnityEngine;
 
 namespace testAtomic
 {
     public class BulletBehavior: IEntityInit, IEntityDispose
     {
+        private float _damage;
+        
         public void Init(IEntity entity)
         {
+            _damage = entity.GetBulletDamage();
             entity.GetOnEntityTriggerEnter().Subscribe(OnTriggerEnter);
         }
 
-        private void OnTriggerEnter(IEntity entity)
+        private void OnTriggerEnter(IEntity other)
         {
-            int damage = entity.GetBulletDamage();
+            Debug.Log("Bullet OnTriggerEnter");
 
-            if (entity.TryGetOnHit(out var onHit))
+            if (other.TryGetOnHit(out var onHit))
             {
-                onHit.Invoke(damage);
+                onHit.Invoke(_damage);
             }
         }
 

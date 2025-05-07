@@ -8,16 +8,17 @@ namespace testAtomic
     [Serializable]
     public class HitPointsInstall : IEntityInstaller
     {
-        public Event<int> OnHit;
+        public Event<float> OnHit;
 
         [SerializeField] private ReactiveVariable<float> _hitpoints = 3;
-        [SerializeField] private ReactiveVariable<bool> _isDead = false;
+        public ReactiveVariable<bool> IsAlive = true;
 
         public void Install(IEntity entity)
         {
+            Debug.Log("Installing hitpoints");
             entity.AddOnHit(OnHit);
             entity.AddHitPoints(_hitpoints);
-            entity.AddIsDead(_isDead);
+            entity.AddIsAlive(new ReactiveVariable<bool>(IsAlive.Value));
         }
     }
 }

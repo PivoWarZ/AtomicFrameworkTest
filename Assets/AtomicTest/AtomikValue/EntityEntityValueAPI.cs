@@ -16,7 +16,7 @@ namespace testAtomic
     {
         ///Keys
         public const int EntityTransform = 16; // Transform
-        public const int OnEntityTriggerEnter = 18; // IEvent<IEntity>
+        public const int OnEntityTriggerEnter = 18; // Event<IEntity>
 
 
         ///Extensions
@@ -39,13 +39,13 @@ namespace testAtomic
         public static void SetEntityTransform(this IEntity obj, Transform value) => obj.SetValue(EntityTransform, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IEvent<IEntity> GetOnEntityTriggerEnter(this IEntity obj) => obj.GetValue<IEvent<IEntity>>(OnEntityTriggerEnter);
+        public static Event<IEntity> GetOnEntityTriggerEnter(this IEntity obj) => obj.GetValue<Event<IEntity>>(OnEntityTriggerEnter);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetOnEntityTriggerEnter(this IEntity obj, out IEvent<IEntity> value) => obj.TryGetValue(OnEntityTriggerEnter, out value);
+        public static bool TryGetOnEntityTriggerEnter(this IEntity obj, out Event<IEntity> value) => obj.TryGetValue(OnEntityTriggerEnter, out value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddOnEntityTriggerEnter(this IEntity obj, IEvent<IEntity> value) => obj.AddValue(OnEntityTriggerEnter, value);
+        public static bool AddOnEntityTriggerEnter(this IEntity obj, Event<IEntity> value) => obj.AddValue(OnEntityTriggerEnter, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasOnEntityTriggerEnter(this IEntity obj) => obj.HasValue(OnEntityTriggerEnter);
@@ -54,6 +54,6 @@ namespace testAtomic
         public static bool DelOnEntityTriggerEnter(this IEntity obj) => obj.DelValue(OnEntityTriggerEnter);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetOnEntityTriggerEnter(this IEntity obj, IEvent<IEntity> value) => obj.SetValue(OnEntityTriggerEnter, value);
+        public static void SetOnEntityTriggerEnter(this IEntity obj, Event<IEntity> value) => obj.SetValue(OnEntityTriggerEnter, value);
     }
 }

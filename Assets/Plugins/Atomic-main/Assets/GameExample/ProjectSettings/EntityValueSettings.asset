@@ -29,7 +29,7 @@ MonoBehaviour:
       type: Transform
     - id: 18
       name: OnEntityTriggerEnter
-      type: IEvent<IEntity>
+      type: Event<IEntity>
   - name: Move
     indexes:
     - id: 7
@@ -38,6 +38,9 @@ MonoBehaviour:
     - id: 11
       name: MoveSpeed
       type: ReactiveVariable<float>
+    - id: 25
+      name: CanMove
+      type: AndExpression
   - name: Input
     indexes:
     - id: 1
@@ -89,11 +92,11 @@ MonoBehaviour:
       name: HitPoints
       type: ReactiveVariable<float>
     - id: 21
-      name: IsDead
+      name: IsAlive
       type: ReactiveVariable<bool>
     - id: 22
       name: OnHit
-      type: IEvent<int>
+      type: IEvent<float>
   - name: Timer
     indexes:
     - id: 14
@@ -109,4 +112,4 @@ MonoBehaviour:
     indexes:
     - id: 24
       name: BulletDamage
-      type: int
+      type: float

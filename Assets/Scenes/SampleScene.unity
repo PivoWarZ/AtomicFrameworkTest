@@ -561,7 +561,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1268770969488955015, guid: 458fa23413211d741801e4b107d7bbcb, type: 3}
       propertyPath: _timerInstall._cooldown.value
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1268770969488955015, guid: 458fa23413211d741801e4b107d7bbcb, type: 3}
       propertyPath: _loockAtInstall._loockTransform.value
@@ -938,8 +938,8 @@ MonoBehaviour:
   _hitPointsInstall:
     _hitpoints:
       value: 3
-    _isDead:
-      value: 0
+    IsAlive:
+      value: 1
 --- !u!1 &2105708115
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,8 +16,8 @@ namespace testAtomic
     {
         ///Keys
         public const int HitPoints = 20; // ReactiveVariable<float>
-        public const int IsDead = 21; // ReactiveVariable<bool>
-        public const int OnHit = 22; // IEvent<int>
+        public const int IsAlive = 21; // ReactiveVariable<bool>
+        public const int OnHit = 22; // IEvent<float>
 
 
         ///Extensions
@@ -40,31 +40,31 @@ namespace testAtomic
         public static void SetHitPoints(this IEntity obj, ReactiveVariable<float> value) => obj.SetValue(HitPoints, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ReactiveVariable<bool> GetIsDead(this IEntity obj) => obj.GetValue<ReactiveVariable<bool>>(IsDead);
+        public static ReactiveVariable<bool> GetIsAlive(this IEntity obj) => obj.GetValue<ReactiveVariable<bool>>(IsAlive);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetIsDead(this IEntity obj, out ReactiveVariable<bool> value) => obj.TryGetValue(IsDead, out value);
+        public static bool TryGetIsAlive(this IEntity obj, out ReactiveVariable<bool> value) => obj.TryGetValue(IsAlive, out value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddIsDead(this IEntity obj, ReactiveVariable<bool> value) => obj.AddValue(IsDead, value);
+        public static bool AddIsAlive(this IEntity obj, ReactiveVariable<bool> value) => obj.AddValue(IsAlive, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasIsDead(this IEntity obj) => obj.HasValue(IsDead);
+        public static bool HasIsAlive(this IEntity obj) => obj.HasValue(IsAlive);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool DelIsDead(this IEntity obj) => obj.DelValue(IsDead);
+        public static bool DelIsAlive(this IEntity obj) => obj.DelValue(IsAlive);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetIsDead(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(IsDead, value);
+        public static void SetIsAlive(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(IsAlive, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IEvent<int> GetOnHit(this IEntity obj) => obj.GetValue<IEvent<int>>(OnHit);
+        public static IEvent<float> GetOnHit(this IEntity obj) => obj.GetValue<IEvent<float>>(OnHit);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetOnHit(this IEntity obj, out IEvent<int> value) => obj.TryGetValue(OnHit, out value);
+        public static bool TryGetOnHit(this IEntity obj, out IEvent<float> value) => obj.TryGetValue(OnHit, out value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddOnHit(this IEntity obj, IEvent<int> value) => obj.AddValue(OnHit, value);
+        public static bool AddOnHit(this IEntity obj, IEvent<float> value) => obj.AddValue(OnHit, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasOnHit(this IEntity obj) => obj.HasValue(OnHit);
@@ -73,6 +73,6 @@ namespace testAtomic
         public static bool DelOnHit(this IEntity obj) => obj.DelValue(OnHit);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetOnHit(this IEntity obj, IEvent<int> value) => obj.SetValue(OnHit, value);
+        public static void SetOnHit(this IEntity obj, IEvent<float> value) => obj.SetValue(OnHit, value);
     }
 }

@@ -13,11 +13,11 @@ namespace testAtomic
 
         public override void Install(IEntity entity)
         {
+            _hitPointsInstall.Install(entity);
             _entityTransform.Install(entity);
             _moveInstall.Install(entity);
             _rotateInstall.Install(entity);
             _shootInstaller.Install(entity);
-            _hitPointsInstall.Install(entity);
 
             entity.AddBehaviour(new MoveBehavior());
             entity.AddBehaviour(new RotateBehavior());
