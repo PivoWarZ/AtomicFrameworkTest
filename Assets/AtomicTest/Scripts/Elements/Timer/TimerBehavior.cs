@@ -1,13 +1,13 @@
 using System;
 using Atomic.Elements;
 using Atomic.Entities;
+using UnityEngine;
 
 namespace testAtomic
 {
     public class TimerBehavior: IEntityUpdate, IEntityInit, IEntityDispose
     {
         private float _timer;
-        private bool _isCountdown = false;
 
         void IEntityInit.Init(IEntity entity)
         {
@@ -17,12 +17,11 @@ namespace testAtomic
         private void StartCountdown(float time)
         {
             _timer = time;
-            _isCountdown = true;
         }
 
         void IEntityUpdate.OnUpdate(IEntity entity, float deltaTime)
         {
-            if (!_isCountdown)
+            if (_timer <= 0)
             {
                 return;
             }
@@ -31,8 +30,7 @@ namespace testAtomic
             
             if (_timer <= 0)
             {
-                entity.GetOnTimerEnd()?.Invoke();
-                _isCountdown = false;
+                entity.GetOnTimerEnd().Invoke();
             }
         }
 

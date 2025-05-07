@@ -9,8 +9,8 @@ namespace testAtomic
     [Serializable]
     public class TimerInstall: IEntityInstaller
     {
-        private Event<float> OnTimerStart;
-        private Event OnTimerEnd;
+        public Event<float> OnTimerStart;
+        public Event OnTimerEnd;
 
         [SerializeField] private ReactiveVariable<float> _cooldown = 5f;
         

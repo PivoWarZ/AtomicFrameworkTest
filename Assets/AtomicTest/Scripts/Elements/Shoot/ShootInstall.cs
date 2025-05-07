@@ -1,8 +1,8 @@
 using System;
 using Atomic.Elements;
 using Atomic.Entities;
-using Sirenix.OdinInspector;
 using UnityEngine;
+using Sirenix.OdinInspector;
 using Event = Atomic.Elements.Event;
 
 namespace testAtomic
@@ -10,8 +10,8 @@ namespace testAtomic
     [Serializable]
     public class ShootInstall: IEntityInstaller
     {
-        private Event OnShootRequest;
-        private Event OnShootFired;
+        public Event OnShootRequest;
+        public Event OnShootFired;
         
         [SerializeField] private SceneEntity _bulletPrefab;
         [SerializeField] private Transform _shootPoint;
@@ -24,6 +24,12 @@ namespace testAtomic
             entity.AddCanShoot(_canShoot);
             entity.AddOnShootFired(OnShootFired);
             entity.AddOnShootRequest(OnShootRequest);
+        }
+
+        [Button]
+        private void Shoot()
+        {
+            OnShootRequest.Invoke();
         }
     }
 }

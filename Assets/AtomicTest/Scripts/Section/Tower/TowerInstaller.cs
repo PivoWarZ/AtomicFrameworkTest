@@ -18,9 +18,9 @@ namespace testAtomic
             
             entity.AddBehaviour(new RotateBehavior());
             entity.AddBehaviour(new LoockAtBehavior());
-            entity.AddBehaviour(new LoockAtBehavior());
             entity.AddBehaviour(new TimerBehavior());
             entity.AddBehaviour(new ShootBehavior());
+            entity.AddBehaviour(new TowerBehavior());
         }
     }
 }

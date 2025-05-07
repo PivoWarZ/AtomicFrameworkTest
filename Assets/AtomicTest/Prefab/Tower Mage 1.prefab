@@ -259,7 +259,7 @@ MonoBehaviour:
       _rotateSpeed: 4
   _timerInstall:
     _cooldown:
-      value: 5
+      value: 10
   _shootInstall:
     _bulletPrefab: {fileID: 7301897369377205389, guid: 37ce856cdf9f41d4188324db634d32a1, type: 3}
     _shootPoint: {fileID: 907593373047204230}
