@@ -103,12 +103,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21756a4ab1f5d9244af31df1ac442ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameObject: {fileID: 0}
   _bulletTransform:
     _transform: {fileID: 8448856681958116616}
+  _damage: 1
   _moveInstall:
     _moveSpeed: 10
     _moveDirection: {x: 1, y: 0, z: 0}
-  _timeToDestroy: 5
 --- !u!114 &7301897369377205389
 MonoBehaviour:
   m_ObjectHideFlags: 0

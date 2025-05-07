@@ -17,7 +17,7 @@ namespace testAtomic
         ///Keys
         public const int HitPoints = 20; // ReactiveVariable<float>
         public const int IsDead = 21; // ReactiveVariable<bool>
-        public const int OnHitEvent = 22; // IEvent<IEntity, int>
+        public const int OnHit = 22; // IEvent<int>
 
 
         ///Extensions
@@ -58,21 +58,21 @@ namespace testAtomic
         public static void SetIsDead(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(IsDead, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IEvent<IEntity, int> GetOnHitEvent(this IEntity obj) => obj.GetValue<IEvent<IEntity, int>>(OnHitEvent);
+        public static IEvent<int> GetOnHit(this IEntity obj) => obj.GetValue<IEvent<int>>(OnHit);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetOnHitEvent(this IEntity obj, out IEvent<IEntity, int> value) => obj.TryGetValue(OnHitEvent, out value);
+        public static bool TryGetOnHit(this IEntity obj, out IEvent<int> value) => obj.TryGetValue(OnHit, out value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddOnHitEvent(this IEntity obj, IEvent<IEntity, int> value) => obj.AddValue(OnHitEvent, value);
+        public static bool AddOnHit(this IEntity obj, IEvent<int> value) => obj.AddValue(OnHit, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasOnHitEvent(this IEntity obj) => obj.HasValue(OnHitEvent);
+        public static bool HasOnHit(this IEntity obj) => obj.HasValue(OnHit);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool DelOnHitEvent(this IEntity obj) => obj.DelValue(OnHitEvent);
+        public static bool DelOnHit(this IEntity obj) => obj.DelValue(OnHit);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetOnHitEvent(this IEntity obj, IEvent<IEntity, int> value) => obj.SetValue(OnHitEvent, value);
+        public static void SetOnHit(this IEntity obj, IEvent<int> value) => obj.SetValue(OnHit, value);
     }
 }

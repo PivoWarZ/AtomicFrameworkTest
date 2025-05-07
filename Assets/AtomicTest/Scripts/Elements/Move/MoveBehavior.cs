@@ -2,9 +2,9 @@ using Atomic.Entities;
 
 namespace testAtomic
 {
-    public class MoveBehavior : IEntityLateUpdate
+    public class MoveBehavior : IEntityFixedUpdate
     {
-        void IEntityLateUpdate.OnLateUpdate(IEntity entity, float deltaTime)
+        void IEntityFixedUpdate.OnFixedUpdate(IEntity entity, float deltaTime)
         {
             var moveTransform = entity.GetEntityTransform();
             var moveSpeed = entity.GetMoveSpeed();

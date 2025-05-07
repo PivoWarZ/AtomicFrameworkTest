@@ -1,26 +1,38 @@
+using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
+using Zenject.SpaceFighter;
 
 namespace testAtomic
 {
 
-    public class BulletInstaller : SceneEntityInstallerBase, IEntityInit
+    public class BulletInstaller : SceneEntityInstallerBase
     {
+        public Event<IEntity> OnEntityTriggerEnter;
+        
+        [SerializeField] private GameObject _gameObject;
         [SerializeField] private TransformInstall _bulletTransform;
+        [SerializeField] private int _damage;
         [SerializeField] private MoveInstall _moveInstall;
-        [SerializeField] private float _timeToDestroy = 5f;
 
         public override void Install(IEntity entity)
         {
+            entity.AddOnEntityTriggerEnter(OnEntityTriggerEnter);
+            entity.AddBulletDamage(_damage);
+            
             _bulletTransform.Install(entity);
             _moveInstall.Install(entity);
 
             entity.AddBehaviour(new MoveBehavior());
         }
 
-        void IEntityInit.Init(IEntity entity)
+        private void OnTriggerEnter(Collider other)
         {
-            Destroy(gameObject, _timeToDestroy);
+            if (other.TryGetEntity(out IEntity entity))
+            {
+                OnEntityTriggerEnter.Invoke(entity);
+                Debug.Log("OnEntityTriggerEnter");
+            }
         }
     }
 }

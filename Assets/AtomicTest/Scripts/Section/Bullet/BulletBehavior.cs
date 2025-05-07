@@ -1,17 +1,28 @@
-using System;
 using Atomic.Entities;
-using UnityEngine;
+using Atomic.Elements;
 
 namespace testAtomic
 {
-    [Serializable]
-    public class BulletBehavior : IEntityInit
+    public class BulletBehavior: IEntityInit, IEntityDispose
     {
-        [SerializeField] private float _timeToDestroy = 5f;
-        [SerializeField] private GameObject _gameObject;
-        void IEntityInit.Init(IEntity entity)
+        public void Init(IEntity entity)
         {
-           SceneEntity.Destroy(_gameObject, _timeToDestroy);
+            entity.GetOnEntityTriggerEnter().Subscribe(OnTriggerEnter);
+        }
+
+        private void OnTriggerEnter(IEntity entity)
+        {
+            int damage = entity.GetBulletDamage();
+
+            if (entity.TryGetOnHit(out var onHit))
+            {
+                onHit.Invoke(damage);
+            }
+        }
+
+        public void Dispose(IEntity entity)
+        {
+            entity.GetOnEntityTriggerEnter().Unsubscribe(OnTriggerEnter);
         }
     }
 }

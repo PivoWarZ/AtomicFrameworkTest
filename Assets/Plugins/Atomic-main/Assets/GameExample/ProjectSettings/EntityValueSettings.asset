@@ -27,6 +27,9 @@ MonoBehaviour:
     - id: 16
       name: EntityTransform
       type: Transform
+    - id: 18
+      name: OnEntityTriggerEnter
+      type: IEvent<IEntity>
   - name: Move
     indexes:
     - id: 7
@@ -89,8 +92,8 @@ MonoBehaviour:
       name: IsDead
       type: ReactiveVariable<bool>
     - id: 22
-      name: OnHitEvent
-      type: IEvent<IEntity, int>
+      name: OnHit
+      type: IEvent<int>
   - name: Timer
     indexes:
     - id: 14
@@ -102,3 +105,8 @@ MonoBehaviour:
     - id: 12
       name: Cooldown
       type: IValue<float>
+  - name: Bullet
+    indexes:
+    - id: 24
+      name: BulletDamage
+      type: int

@@ -4,20 +4,24 @@ namespace testAtomic
 {
     public class HitPointsBehavior : IEntityInit
     {
+        private IEntity _entity;
+        
         void IEntityInit.Init(IEntity entity)
         {
-            entity.GetOnHitEvent().Subscribe(TakeDamage);
+            _entity = entity;
+            
+            entity.GetOnHit().Subscribe(TakeDamage);
         }
 
-        private void TakeDamage(IEntity entity, int damage)
+        private void TakeDamage(int damage)
         { 
-            entity.GetHitPoints().Value -= damage;
+            _entity.GetHitPoints().Value -= damage;
 
-            float hitpoints = entity.GetHitPoints().Value;
+            float hitpoints = _entity.GetHitPoints().Value;
 
             if (hitpoints <= 0)
             {
-                entity.GetIsDead().Value = true;
+                _entity.GetIsDead().Value = true;
             }
         }
     }
