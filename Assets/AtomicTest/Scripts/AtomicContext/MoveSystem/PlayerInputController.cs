@@ -1,7 +1,7 @@
 using System;
 using Atomic.Contexts;
 using Atomic.Entities;
-using testAtomic;
+
 using UnityEngine;
 
 namespace testAtomic

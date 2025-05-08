@@ -16,13 +16,12 @@ MonoBehaviour:
   categories:
   - Name: Game
     Namespace: testAtomic
-    DirectoryPath: Assets/GameExample/Scripts/Codegen
+    DirectoryPath: Assets/AtomicTest/AtomikContext
     ClassSuffix: ContextAPI
     Imports:
     - Atomic.Entities
     - Atomic.Elements
     - System.Collections.Generic
-    - GameExample.Engine
     - testAtomic
     items:
     - id: 1
@@ -31,32 +30,3 @@ MonoBehaviour:
     - id: 5
       name: PlayerShoot
       type: ShootInput
-  - Name: Player
-    Namespace: Atomic.Contexts
-    DirectoryPath: Assets/GameExample/Scripts/Codegen
-    ClassSuffix: ContextAPI
-    Imports:
-    - Atomic.Entities
-    - Atomic.Elements
-    - GameExample.Engine
-    - System.Collections.Generic
-    - testAtomic
-    items:
-    - id: 3
-      name: MoveableUnitsFilter
-      type: IEntityFilter
-    - id: 4
-      name: InputMap
-      type: InputMap
-    - id: 2
-      name: Character
-      type: Const<IEntity>
-    - id: 6
-      name: Money
-      type: ReactiveVariable<int>
-    - id: 8
-      name: CameraData
-      type: CameraData
-    - id: 9
-      name: TeamType
-      type: Const<TeamType>

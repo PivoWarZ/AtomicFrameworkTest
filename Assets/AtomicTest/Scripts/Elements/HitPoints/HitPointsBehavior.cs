@@ -25,6 +25,7 @@ namespace testAtomic
             if (hitpoints <= 0)
             {
                 _entity.GetIsAlive().Value = false;
+                _entity.GetOnHitPointsEmpty().Invoke();
             }
         }
     }

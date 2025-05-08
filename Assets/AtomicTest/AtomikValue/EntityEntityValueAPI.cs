@@ -7,7 +7,6 @@ using Atomic.Entities;
 using System.Runtime.CompilerServices;
 using Atomic.Elements;
 using Atomic.Extensions;
-using GameExample.Engine;
 using Unity.Mathematics;
 
 namespace testAtomic

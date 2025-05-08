@@ -151,12 +151,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21756a4ab1f5d9244af31df1ac442ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 1
   _bulletTransform:
     _transform: {fileID: 4184048988250639792}
   _moveInstall:
     _moveSpeed: 10
     _moveDirection: {x: 0, y: 0, z: 0}
-  _timeToDestroy: 5
 --- !u!114 &7800211415885273789
 MonoBehaviour:
   m_ObjectHideFlags: 0

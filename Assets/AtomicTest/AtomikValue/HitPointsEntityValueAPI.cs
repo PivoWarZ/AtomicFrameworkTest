@@ -7,7 +7,6 @@ using Atomic.Entities;
 using System.Runtime.CompilerServices;
 using Atomic.Elements;
 using Atomic.Extensions;
-using GameExample.Engine;
 using Unity.Mathematics;
 
 namespace testAtomic
@@ -18,6 +17,7 @@ namespace testAtomic
         public const int HitPoints = 20; // ReactiveVariable<float>
         public const int IsAlive = 21; // ReactiveVariable<bool>
         public const int OnHit = 22; // IEvent<float>
+        public const int OnHitPointsEmpty = 3; // IEvent
 
 
         ///Extensions
@@ -74,5 +74,23 @@ namespace testAtomic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetOnHit(this IEntity obj, IEvent<float> value) => obj.SetValue(OnHit, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEvent GetOnHitPointsEmpty(this IEntity obj) => obj.GetValue<IEvent>(OnHitPointsEmpty);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetOnHitPointsEmpty(this IEntity obj, out IEvent value) => obj.TryGetValue(OnHitPointsEmpty, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddOnHitPointsEmpty(this IEntity obj, IEvent value) => obj.AddValue(OnHitPointsEmpty, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasOnHitPointsEmpty(this IEntity obj) => obj.HasValue(OnHitPointsEmpty);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelOnHitPointsEmpty(this IEntity obj) => obj.DelValue(OnHitPointsEmpty);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetOnHitPointsEmpty(this IEntity obj, IEvent value) => obj.SetValue(OnHitPointsEmpty, value);
     }
 }

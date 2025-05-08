@@ -2,6 +2,7 @@ using System;
 using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace testAtomic
 {

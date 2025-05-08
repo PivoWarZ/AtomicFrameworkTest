@@ -19,7 +19,6 @@ MonoBehaviour:
   imports:
   - Atomic.Elements
   - Atomic.Extensions
-  - GameExample.Engine
   - Unity.Mathematics
   categories:
   - name: Entity
@@ -41,23 +40,6 @@ MonoBehaviour:
     - id: 25
       name: CanMove
       type: AndExpression
-  - name: Input
-    indexes:
-    - id: 1
-      name: ForwardDirectionInput
-      type: UnityEngine.KeyCode
-    - id: 2
-      name: LeftDirectionInput
-      type: UnityEngine.KeyCode
-    - id: 3
-      name: RightDirectionInput
-      type: UnityEngine.KeyCode
-    - id: 4
-      name: DownDirectionInput
-      type: UnityEngine.KeyCode
-    - id: 5
-      name: MovableEntity
-      type: SceneEntity
   - name: Rotate
     indexes:
     - id: 8
@@ -97,6 +79,9 @@ MonoBehaviour:
     - id: 22
       name: OnHit
       type: IEvent<float>
+    - id: 3
+      name: OnHitPointsEmpty
+      type: IEvent
   - name: Timer
     indexes:
     - id: 14
@@ -108,8 +93,16 @@ MonoBehaviour:
     - id: 12
       name: Cooldown
       type: IValue<float>
-  - name: Bullet
+  - name: Damage
     indexes:
     - id: 24
-      name: BulletDamage
+      name: Damage
       type: float
+  - name: ObjectType
+    indexes:
+    - id: 1
+      name: ObjectType
+      type: string
+    - id: 2
+      name: HealingType
+      type: string

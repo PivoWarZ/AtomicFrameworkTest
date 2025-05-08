@@ -16,9 +16,7 @@ namespace testAtomic
         public override void Install(IEntity entity)
         {
             entity.AddOnEntityTriggerEnter(OnEntityTriggerEnter);
-            entity.AddBulletDamage(Damage);
-            
-            Debug.Log(entity.GetBulletDamage());
+            entity.AddDamage(Damage);
             
             _bulletTransform.Install(entity);
             _moveInstall.Install(entity);
@@ -31,7 +29,6 @@ namespace testAtomic
         {
             if (other.TryGetEntity(out IEntity entity))
             {
-                Debug.Log("OnTriggerEnter");
                 OnEntityTriggerEnter.Invoke(entity);
             }
         }

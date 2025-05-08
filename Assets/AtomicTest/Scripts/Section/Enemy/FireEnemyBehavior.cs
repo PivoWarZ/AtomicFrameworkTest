@@ -3,32 +3,35 @@ using UnityEngine;
 
 namespace testAtomic
 {
-    public class BulletBehavior: IEntityInit, IEntityDispose
+    public class FireEnemyBehavior: IEntityInit, IEntityDispose, IEntityUpdate
     {
+        private Transform _enemyTransform;
         private float _damage;
-        private Transform _bulletTransform;
         
-        public void Init(IEntity entity)
+        void IEntityInit.Init(IEntity entity)
         {
+            _enemyTransform = entity.GetEntityTransform();
             _damage = entity.GetDamage();
-            _bulletTransform = entity.GetEntityTransform();
             entity.GetOnEntityTriggerEnter().Subscribe(OnTriggerEnter);
         }
 
         private void OnTriggerEnter(IEntity other)
         {
-            
             if (other.TryGetOnHit(out var onHit))
             {
                 onHit.Invoke(_damage);
-                SceneEntity.Destroy(_bulletTransform.gameObject);
+                SceneEntity.Destroy(_enemyTransform.gameObject);
             }
-
         }
 
-        public void Dispose(IEntity entity)
+        void IEntityDispose.Dispose(IEntity entity)
         {
             entity.GetOnEntityTriggerEnter().Unsubscribe(OnTriggerEnter);
+        }
+
+        void IEntityUpdate.OnUpdate(IEntity entity, float deltaTime)
+        {
+            entity.GetMoveDirection().Value = _enemyTransform.forward;
         }
     }
 }
