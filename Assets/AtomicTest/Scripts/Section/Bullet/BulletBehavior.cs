@@ -25,7 +25,7 @@ namespace testAtomic
             }
 
         }
-
+        
         public void Dispose(IEntity entity)
         {
             entity.GetOnEntityTriggerEnter().Unsubscribe(OnTriggerEnter);

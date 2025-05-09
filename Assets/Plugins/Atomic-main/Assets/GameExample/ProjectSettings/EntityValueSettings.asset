@@ -106,3 +106,11 @@ MonoBehaviour:
     - id: 2
       name: HealingType
       type: string
+  - name: DeathMechanics
+    indexes:
+    - id: 4
+      name: DeathSettings
+      type: DeathSettings
+    - id: 5
+      name: PoolTransform
+      type: Transform
