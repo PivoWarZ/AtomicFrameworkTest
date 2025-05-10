@@ -1,5 +1,4 @@
 using Atomic.Contexts;
-using testAtomic;
 using UnityEngine;
 
 namespace testAtomic

@@ -30,3 +30,9 @@ MonoBehaviour:
     - id: 5
       name: PlayerShoot
       type: ShootInput
+    - id: 2
+      name: TimerContext
+      type: TimerInstall
+    - id: 3
+      name: SpawnerLocator
+      type: SpawnerLocator

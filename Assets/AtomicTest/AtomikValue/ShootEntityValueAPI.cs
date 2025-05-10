@@ -19,6 +19,7 @@ namespace testAtomic
         public const int CanShoot = 13; // ReactiveVariable<bool>
         public const int OnShootRequest = 15; // IEvent
         public const int OnShootFired = 19; // IEvent
+        public const int BulletContainer = 28; // Transform
 
 
         ///Extensions
@@ -111,5 +112,23 @@ namespace testAtomic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetOnShootFired(this IEntity obj, IEvent value) => obj.SetValue(OnShootFired, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Transform GetBulletContainer(this IEntity obj) => obj.GetValue<Transform>(BulletContainer);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetBulletContainer(this IEntity obj, out Transform value) => obj.TryGetValue(BulletContainer, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddBulletContainer(this IEntity obj, Transform value) => obj.AddValue(BulletContainer, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasBulletContainer(this IEntity obj) => obj.HasValue(BulletContainer);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelBulletContainer(this IEntity obj) => obj.DelValue(BulletContainer);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetBulletContainer(this IEntity obj, Transform value) => obj.SetValue(BulletContainer, value);
     }
 }

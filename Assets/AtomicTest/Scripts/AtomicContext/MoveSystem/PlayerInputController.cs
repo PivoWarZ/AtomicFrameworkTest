@@ -16,13 +16,38 @@ namespace testAtomic
         public void Init(IContext context)
         {
             _moveInput = context.GetPlayerInput();
-            _moveInput.Move.Subscribe(Move);
+            _moveInput.OnStay.Subscribe(OnStay);
+            _moveInput.OnForward.Subscribe(MoveForward);
+            _moveInput.OnRight.Subscribe(MoveRight);
+            _moveInput.OnLeft.Subscribe(MoveLeft);
+            _moveInput.OnBack.Subscribe(MoveBack);
         }
 
-        private void Move(Vector3 direction)
+        private void MoveBack()
         {
-            _sceneEntity.GetMoveDirection().Value = direction;
-            _sceneEntity.GetRotateDirection().Value = direction;
+            _sceneEntity.GetMoveDirection().Value = -_sceneEntity.GetEntityTransform().forward;
         }
+
+        private void MoveLeft()
+        {
+            _sceneEntity.GetMoveDirection().Value = -_sceneEntity.GetEntityTransform().right;
+        }
+
+        private void MoveRight()
+        {
+            _sceneEntity.GetMoveDirection().Value = _sceneEntity.GetEntityTransform().right;
+        }
+
+        private void OnStay()
+        {
+            _sceneEntity.GetMoveDirection().Value = Vector3.zero;
+        }
+
+        private void MoveForward()
+        {
+            _sceneEntity.GetMoveDirection().Value = _sceneEntity.GetEntityTransform().forward;
+        }
+        
+        
     }
 }

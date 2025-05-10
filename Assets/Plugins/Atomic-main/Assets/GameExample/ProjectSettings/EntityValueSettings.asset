@@ -51,6 +51,12 @@ MonoBehaviour:
     - id: 17
       name: LoockAtTransform
       type: ReactiveVariable<Transform>
+    - id: 26
+      name: MinLoockDistance
+      type: float
+    - id: 27
+      name: LoockMouseCursor
+      type: bool
   - name: Shoot
     indexes:
     - id: 9
@@ -68,6 +74,9 @@ MonoBehaviour:
     - id: 19
       name: OnShootFired
       type: IEvent
+    - id: 28
+      name: BulletContainer
+      type: Transform
   - name: HitPoints
     indexes:
     - id: 20

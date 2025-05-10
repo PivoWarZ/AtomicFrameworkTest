@@ -253,6 +253,8 @@ MonoBehaviour:
   _loockAtInstall:
     _loockTransform:
       value: {fileID: 0}
+    _minLoockDistance: 0
+    _loockMouseCursor: 0
     _rotateInstall:
       _rotateDirection:
         value: {x: 0, y: 0, z: 0}

@@ -17,6 +17,8 @@ namespace testAtomic
 		///Keys
 		public const int PlayerInput = 1; // MoveInput
 		public const int PlayerShoot = 5; // ShootInput
+		public const int TimerContext = 2; // TimerInstall
+		public const int SpawnerLocator = 3; // SpawnerLocator
 
 
 		///Extensions
@@ -55,5 +57,41 @@ namespace testAtomic
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasPlayerShoot(this IContext obj) => obj.HasValue(PlayerShoot);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static TimerInstall GetTimerContext(this IContext obj) => obj.ResolveValue<TimerInstall>(TimerContext);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetTimerContext(this IContext obj, out TimerInstall value) => obj.TryResolveValue(TimerContext, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddTimerContext(this IContext obj, TimerInstall value) => obj.AddValue(TimerContext, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelTimerContext(this IContext obj) => obj.DelValue(TimerContext);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetTimerContext(this IContext obj, TimerInstall value) => obj.SetValue(TimerContext, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasTimerContext(this IContext obj) => obj.HasValue(TimerContext);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static SpawnerLocator GetSpawnerLocator(this IContext obj) => obj.ResolveValue<SpawnerLocator>(SpawnerLocator);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetSpawnerLocator(this IContext obj, out SpawnerLocator value) => obj.TryResolveValue(SpawnerLocator, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddSpawnerLocator(this IContext obj, SpawnerLocator value) => obj.AddValue(SpawnerLocator, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelSpawnerLocator(this IContext obj) => obj.DelValue(SpawnerLocator);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetSpawnerLocator(this IContext obj, SpawnerLocator value) => obj.SetValue(SpawnerLocator, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasSpawnerLocator(this IContext obj) => obj.HasValue(SpawnerLocator);
     }
 }

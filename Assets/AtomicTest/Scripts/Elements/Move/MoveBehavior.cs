@@ -34,7 +34,7 @@ namespace testAtomic
             var posZ = Mathf.Abs(position.z);
 
             bool outX = posX >= _zoneRange;
-            bool outY = posY >= _zoneRange || position.y < 0;
+            bool outY = posY >= _zoneRange;
             bool outZ = posZ >= _zoneRange;
 
             if (outX || outY || outZ)

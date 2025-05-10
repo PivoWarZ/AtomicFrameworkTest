@@ -1,11 +1,12 @@
 using System;
+using Atomic.Contexts;
 using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
 
 namespace testAtomic
 {
-    public class TimerBehavior: IEntityUpdate, IEntityInit, IEntityDispose
+    public class TimerBehavior: IEntityUpdate, IEntityInit, IEntityDispose, IContextSystem
     {
         private float _timer;
 

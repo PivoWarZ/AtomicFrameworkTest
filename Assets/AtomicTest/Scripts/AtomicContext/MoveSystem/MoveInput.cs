@@ -1,15 +1,19 @@
 using System;
 using Atomic.Contexts;
-using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
+using Event = Atomic.Elements.Event;
 
 namespace testAtomic    
 {
     [Serializable]
     public class MoveInput: IContextUpdate
     {
-        public ReactiveVariable<Vector3> Move;
+        [NonSerialized] public Event OnStay = new();
+        [NonSerialized] public Event OnForward = new();
+        [NonSerialized] public Event OnBack = new();
+        [NonSerialized] public Event OnLeft = new();
+        [NonSerialized] public Event OnRight = new();
         
         [SerializeField] private KeyCode _forward;
         [SerializeField] private KeyCode _left;
@@ -18,24 +22,25 @@ namespace testAtomic
 
         public void Update(IContext context, float deltaTime)
         {
-            Move.Value = Vector3.zero;
-
+            OnStay.Invoke();
+            
             if (Input.GetKey(_forward))
             {
-                Move.Value = Vector3.forward;
+                OnForward?.Invoke();
             }
             else if (Input.GetKey(_left))
             {
-                Move.Value = Vector3.left;
+                OnLeft?.Invoke();
             }
             else if (Input.GetKey(_right))
             {
-                Move.Value = Vector3.right;
+                OnRight?.Invoke();
             }
             else if (Input.GetKey(_down))
             {
-                Move.Value = -Vector3.forward;
+                OnBack?.Invoke();
             }
+            
         }
     }
 }

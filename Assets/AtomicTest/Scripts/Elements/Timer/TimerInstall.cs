@@ -20,5 +20,7 @@ namespace testAtomic
             entity.AddOnTimerStart(OnTimerStart);
             entity.AddOnTimerEnd(OnTimerEnd);
         }
+        
+        public float Cooldown => _cooldown.Value;
     }
 }
