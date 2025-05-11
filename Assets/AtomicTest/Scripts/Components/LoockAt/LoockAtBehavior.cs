@@ -29,7 +29,6 @@ namespace testAtomic
                 if (Physics.Raycast(_ray, out RaycastHit hit, Mathf.Infinity, 3 << LayerMask.NameToLayer("Ground")))
                 {
                     _hit = hit;
-                    Debug.Log(_hit.collider.gameObject.name);
                 }
             }
         }

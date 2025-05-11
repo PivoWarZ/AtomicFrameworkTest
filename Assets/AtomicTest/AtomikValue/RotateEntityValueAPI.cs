@@ -19,6 +19,7 @@ namespace testAtomic
         public const int LoockAtTransform = 17; // ReactiveVariable<Transform>
         public const int MinLoockDistance = 26; // float
         public const int LoockMouseCursor = 27; // bool
+        public const int CanRotate = 30; // AndExpression
 
 
         ///Extensions
@@ -111,5 +112,23 @@ namespace testAtomic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetLoockMouseCursor(this IEntity obj, bool value) => obj.SetValue(LoockMouseCursor, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static AndExpression GetCanRotate(this IEntity obj) => obj.GetValue<AndExpression>(CanRotate);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetCanRotate(this IEntity obj, out AndExpression value) => obj.TryGetValue(CanRotate, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddCanRotate(this IEntity obj, AndExpression value) => obj.AddValue(CanRotate, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasCanRotate(this IEntity obj) => obj.HasValue(CanRotate);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelCanRotate(this IEntity obj) => obj.DelValue(CanRotate);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetCanRotate(this IEntity obj, AndExpression value) => obj.SetValue(CanRotate, value);
     }
 }

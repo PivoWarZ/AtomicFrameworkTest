@@ -7,6 +7,11 @@ namespace testAtomic
     {
         void IEntityLateUpdate.OnLateUpdate(IEntity entity, float deltaTime)
         {
+            if (!entity.GetCanRotate().Value)
+            {
+                return;
+            }
+
             var direction = entity.GetRotateDirection().Value;
 
             if (direction == Vector3.zero)

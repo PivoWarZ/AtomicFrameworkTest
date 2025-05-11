@@ -15,7 +15,7 @@ namespace testAtomic
         
         [SerializeField] private SceneEntity _bulletPrefab;
         [SerializeField] private Transform _shootPoint;
-        [SerializeField] private ReactiveVariable<bool> _canShoot;
+        [SerializeField] private AndExpression _canShoot;
 
         public void Install(IEntity entity)
         {

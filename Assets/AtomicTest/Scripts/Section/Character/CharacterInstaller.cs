@@ -1,3 +1,4 @@
+using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
 
@@ -19,10 +20,20 @@ namespace testAtomic
             _loockAtInstall.Install(entity);
             _shootInstaller.Install(entity);
 
-            entity.AddBehaviour(new TransformPositionMoveBehavior());
+            entity.AddBehaviour(new RigidbodyVelocityMoveBehavior());
             entity.AddBehaviour(new LoockAtBehavior());
             entity.AddBehaviour(new ShootBehavior());
             entity.AddBehaviour(new HitPointsBehavior());
+            entity.AddBehaviour(new CharacterActionBehavior());
+
+            SetCondition(entity);
+        }
+        
+        private void SetCondition(IEntity entity)
+        {
+            entity.GetCanMove().Append(entity.GetIsAlive());
+            entity.GetCanRotate().Append(entity.GetIsAlive());
+            entity.GetCanShoot().Append(entity.GetIsAlive());
         }
     }
 }

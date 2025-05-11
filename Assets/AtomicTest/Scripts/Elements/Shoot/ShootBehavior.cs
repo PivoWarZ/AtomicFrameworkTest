@@ -9,7 +9,7 @@ namespace testAtomic
         private IEntity _sceneEntity;
         private SceneEntity _bulletPrefab;
         private Transform _shootPoint;
-        private ReactiveVariable<bool> _canShoot = new();
+        private AndExpression _canShoot;
 
         void IEntityInit.Init(IEntity entity)
         {

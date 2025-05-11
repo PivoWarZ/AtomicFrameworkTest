@@ -16,7 +16,7 @@ namespace testAtomic
         ///Keys
         public const int BulletPrefab = 9; // SceneEntity
         public const int ShootPoint = 10; // Transform
-        public const int CanShoot = 13; // ReactiveVariable<bool>
+        public const int CanShoot = 13; // AndExpression
         public const int OnShootRequest = 15; // IEvent
         public const int OnShootFired = 19; // IEvent
         public const int BulletContainer = 28; // Transform
@@ -60,13 +60,13 @@ namespace testAtomic
         public static void SetShootPoint(this IEntity obj, Transform value) => obj.SetValue(ShootPoint, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ReactiveVariable<bool> GetCanShoot(this IEntity obj) => obj.GetValue<ReactiveVariable<bool>>(CanShoot);
+        public static AndExpression GetCanShoot(this IEntity obj) => obj.GetValue<AndExpression>(CanShoot);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetCanShoot(this IEntity obj, out ReactiveVariable<bool> value) => obj.TryGetValue(CanShoot, out value);
+        public static bool TryGetCanShoot(this IEntity obj, out AndExpression value) => obj.TryGetValue(CanShoot, out value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddCanShoot(this IEntity obj, ReactiveVariable<bool> value) => obj.AddValue(CanShoot, value);
+        public static bool AddCanShoot(this IEntity obj, AndExpression value) => obj.AddValue(CanShoot, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasCanShoot(this IEntity obj) => obj.HasValue(CanShoot);
@@ -75,7 +75,7 @@ namespace testAtomic
         public static bool DelCanShoot(this IEntity obj) => obj.DelValue(CanShoot);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetCanShoot(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(CanShoot, value);
+        public static void SetCanShoot(this IEntity obj, AndExpression value) => obj.SetValue(CanShoot, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEvent GetOnShootRequest(this IEntity obj) => obj.GetValue<IEvent>(OnShootRequest);

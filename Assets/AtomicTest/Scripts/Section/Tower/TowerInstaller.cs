@@ -16,9 +16,8 @@ namespace testAtomic
             _timerInstall.Install(entity);
             _shootInstall.Install(entity);
             
-            entity.AddBehaviour(new RotateBehavior());
+            entity.AddBehaviour(new CycleTimerBehavior());
             entity.AddBehaviour(new LoockAtBehavior());
-            entity.AddBehaviour(new TimerBehavior());
             entity.AddBehaviour(new ShootBehavior());
             entity.AddBehaviour(new TowerBehavior());
         }

@@ -10,25 +10,15 @@ namespace testAtomic
     public class MoveInstall: IEntityInstaller
     {
         [SerializeField] private float _moveSpeed = 10f;
-        [SerializeField] ReactiveVariable<Vector3> _moveDirection = Vector3.zero;
-        [SerializeField] public AndExpression CanMove;
+        [SerializeField] private ReactiveVariable<Vector3> _moveDirection = Vector3.zero;
+        [SerializeField] private AndExpression CanMove = new();
 
         public void Install(IEntity entity)
         {
-            SetCanMove(entity);
-            
             entity.AddCanMove(CanMove);
             
             entity.AddMoveDirection(_moveDirection);
             entity.AddMoveSpeed(_moveSpeed);
-        }
-
-        private void SetCanMove(IEntity entity)
-        {
-            if (entity.TryGetIsAlive(out var isAlive))
-            {
-                CanMove.Append(isAlive);
-            }
         }
     }
 }

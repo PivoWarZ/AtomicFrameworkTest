@@ -33,6 +33,14 @@ namespace testAtomic
             entity.AddBehaviour(new FireEnemyBehavior());
             entity.AddBehaviour(new HitPointsBehavior());
             entity.AddBehaviour(new DeathMechanicsBehavior());
+
+            SetCondition(entity);
+        }
+
+        private void SetCondition(IEntity entity)
+        {
+            entity.GetCanMove().Append(entity.GetIsAlive());
+            entity.GetCanRotate().Append(entity.GetIsAlive());
         }
 
         private void OnTriggerEnter(Collider other)

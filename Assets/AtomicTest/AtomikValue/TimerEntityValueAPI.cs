@@ -17,6 +17,7 @@ namespace testAtomic
         public const int OnTimerStart = 14; // IEvent<float>
         public const int OnTimerEnd = 23; // IEvent
         public const int Cooldown = 12; // IValue<float>
+        public const int TimeSpread = 29; // IValue<float>
 
 
         ///Extensions
@@ -73,5 +74,23 @@ namespace testAtomic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetCooldown(this IEntity obj, IValue<float> value) => obj.SetValue(Cooldown, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IValue<float> GetTimeSpread(this IEntity obj) => obj.GetValue<IValue<float>>(TimeSpread);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetTimeSpread(this IEntity obj, out IValue<float> value) => obj.TryGetValue(TimeSpread, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddTimeSpread(this IEntity obj, IValue<float> value) => obj.AddValue(TimeSpread, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasTimeSpread(this IEntity obj) => obj.HasValue(TimeSpread);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelTimeSpread(this IEntity obj) => obj.DelValue(TimeSpread);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetTimeSpread(this IEntity obj, IValue<float> value) => obj.SetValue(TimeSpread, value);
     }
 }

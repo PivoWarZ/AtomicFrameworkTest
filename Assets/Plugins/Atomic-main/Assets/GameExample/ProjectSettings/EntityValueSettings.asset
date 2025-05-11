@@ -57,6 +57,9 @@ MonoBehaviour:
     - id: 27
       name: LoockMouseCursor
       type: bool
+    - id: 30
+      name: CanRotate
+      type: AndExpression
   - name: Shoot
     indexes:
     - id: 9
@@ -67,7 +70,7 @@ MonoBehaviour:
       type: Transform
     - id: 13
       name: CanShoot
-      type: ReactiveVariable<bool>
+      type: AndExpression
     - id: 15
       name: OnShootRequest
       type: IEvent
@@ -101,6 +104,9 @@ MonoBehaviour:
       type: IEvent
     - id: 12
       name: Cooldown
+      type: IValue<float>
+    - id: 29
+      name: TimeSpread
       type: IValue<float>
   - name: Damage
     indexes:
