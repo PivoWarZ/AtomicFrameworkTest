@@ -19,7 +19,7 @@ namespace testAtomic
             _loockAtInstall.Install(entity);
             _shootInstaller.Install(entity);
 
-            entity.AddBehaviour(new MoveBehavior());
+            entity.AddBehaviour(new TransformPositionMoveBehavior());
             entity.AddBehaviour(new LoockAtBehavior());
             entity.AddBehaviour(new ShootBehavior());
             entity.AddBehaviour(new HitPointsBehavior());

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace testAtomic
 {
-    public class LoockAtBehavior : IEntityUpdate, IEntityLateUpdate, IEntityInit
+    public class LoockAtBehavior : IEntityUpdate, IEntityFixedUpdate, IEntityInit
     {
         private bool _loockMouseCursor;
         private Vector3 _mousePosition;
@@ -14,6 +14,8 @@ namespace testAtomic
         public void Init(IEntity entity)
         {
             _loockMouseCursor = entity.GetLoockMouseCursor();
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
         }
         
         public void OnUpdate(IEntity entity, float deltaTime)
@@ -27,11 +29,12 @@ namespace testAtomic
                 if (Physics.Raycast(_ray, out RaycastHit hit, Mathf.Infinity, 3 << LayerMask.NameToLayer("Ground")))
                 {
                     _hit = hit;
+                    Debug.Log(_hit.collider.gameObject.name);
                 }
             }
         }
         
-        void IEntityLateUpdate.OnLateUpdate(IEntity entity, float deltaTime)
+        void IEntityFixedUpdate.OnFixedUpdate(IEntity entity, float deltaTime)
         {
             if (_loockMouseCursor)
             {

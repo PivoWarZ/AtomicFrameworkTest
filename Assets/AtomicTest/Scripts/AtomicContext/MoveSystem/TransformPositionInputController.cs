@@ -7,7 +7,7 @@ using UnityEngine;
 namespace testAtomic
 {
     [Serializable]
-    public class PlayerInputController: IContextInit
+    public class TransformPositionInputController: IContextInit, IContextDispose
     {
         [SerializeField] SceneEntity _sceneEntity;
         private MoveInput _moveInput;
@@ -47,7 +47,15 @@ namespace testAtomic
         {
             _sceneEntity.GetMoveDirection().Value = _sceneEntity.GetEntityTransform().forward;
         }
-        
-        
+
+
+        public void Dispose(IContext context)
+        {
+            _moveInput.OnStay.Unsubscribe(OnStay);
+            _moveInput.OnForward.Unsubscribe(MoveForward);
+            _moveInput.OnRight.Unsubscribe(MoveRight);
+            _moveInput.OnLeft.Unsubscribe(MoveLeft);
+            _moveInput.OnBack.Unsubscribe(MoveBack);
+        }
     }
 }

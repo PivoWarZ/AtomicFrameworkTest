@@ -21,7 +21,7 @@ namespace testAtomic
             _bulletTransform.Install(entity);
             _moveInstall.Install(entity);
 
-            entity.AddBehaviour(new MoveBehavior());
+            entity.AddBehaviour(new TransformPositionMoveBehavior());
             entity.AddBehaviour(new BulletBehavior());
         }
 

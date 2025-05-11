@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace testAtomic
 {
-    public class MoveBehavior : IEntityFixedUpdate
+    public class TransformPositionMoveBehavior : IEntityFixedUpdate
     {
         private float _zoneRange = 20f;
         void IEntityFixedUpdate.OnFixedUpdate(IEntity entity, float deltaTime)

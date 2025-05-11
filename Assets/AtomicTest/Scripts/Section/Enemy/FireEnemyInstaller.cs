@@ -28,7 +28,7 @@ namespace testAtomic
             _loockAtInstall.Install(entity);
             _deathMechanicsInstall.Install(entity);
 
-            entity.AddBehaviour(new MoveBehavior());
+            entity.AddBehaviour(new TransformPositionMoveBehavior());
             entity.AddBehaviour(new LoockAtBehavior());
             entity.AddBehaviour(new FireEnemyBehavior());
             entity.AddBehaviour(new HitPointsBehavior());
