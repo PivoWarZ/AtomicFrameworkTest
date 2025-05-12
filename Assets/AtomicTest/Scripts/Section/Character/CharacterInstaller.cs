@@ -11,6 +11,7 @@ namespace testAtomic
         [SerializeField] private LoockAtInstall _loockAtInstall;
         [SerializeField] private ShootInstall _shootInstaller;
         [SerializeField] private HitPointsInstall _hitPointsInstall;
+        [SerializeField] private BallKickSkillInstall _ballKickInstall;
 
         public override void Install(IEntity entity)
         {
@@ -19,12 +20,15 @@ namespace testAtomic
             _moveInstall.Install(entity);
             _loockAtInstall.Install(entity);
             _shootInstaller.Install(entity);
+            _ballKickInstall.Install(entity);
 
             entity.AddBehaviour(new RigidbodyVelocityMoveBehavior());
-            entity.AddBehaviour(new LoockAtBehavior());
+            entity.AddBehaviour(new LoockMouseCursorBehavior());
             entity.AddBehaviour(new ShootBehavior());
             entity.AddBehaviour(new HitPointsBehavior());
-            entity.AddBehaviour(new CharacterActionBehavior());
+            entity.AddBehaviour(new BallKickSkillBehavior(
+                _ballKickInstall.RayOffset, _ballKickInstall.LayerMaskToKick, 
+                _ballKickInstall.KickForce, _ballKickInstall.DistanceForKick));
 
             SetCondition(entity);
         }

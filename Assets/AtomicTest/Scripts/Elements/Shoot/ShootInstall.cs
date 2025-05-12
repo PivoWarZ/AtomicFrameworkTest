@@ -15,6 +15,7 @@ namespace testAtomic
         
         [SerializeField] private SceneEntity _bulletPrefab;
         [SerializeField] private Transform _shootPoint;
+        [SerializeField] private Transform _bulletContainer;
         [SerializeField] private AndExpression _canShoot;
 
         public void Install(IEntity entity)
@@ -24,6 +25,7 @@ namespace testAtomic
             entity.AddCanShoot(_canShoot);
             entity.AddOnShootFired(OnShootFired);
             entity.AddOnShootRequest(OnShootRequest);
+            entity.AddBulletContainer(_bulletContainer);
         }
 
         [Button]

@@ -29,6 +29,9 @@ MonoBehaviour:
     - id: 18
       name: OnEntityTriggerEnter
       type: Event<IEntity>
+    - id: 33
+      name: OnEntityCollisionEnter
+      type: IEvent<Collision>
   - name: Move
     indexes:
     - id: 7
@@ -54,9 +57,6 @@ MonoBehaviour:
     - id: 26
       name: MinLoockDistance
       type: float
-    - id: 27
-      name: LoockMouseCursor
-      type: bool
     - id: 30
       name: CanRotate
       type: AndExpression
@@ -113,6 +113,9 @@ MonoBehaviour:
     - id: 24
       name: Damage
       type: float
+    - id: 34
+      name: HitPowerForDamage
+      type: float
   - name: ObjectType
     indexes:
     - id: 1
@@ -129,3 +132,13 @@ MonoBehaviour:
     - id: 5
       name: PoolTransform
       type: Transform
+  - name: Borders
+    indexes:
+    - id: 31
+      name: BordersRange
+      type: float
+  - name: Skills
+    indexes:
+    - id: 32
+      name: OnKick
+      type: IEvent

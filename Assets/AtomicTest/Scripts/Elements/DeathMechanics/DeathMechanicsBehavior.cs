@@ -1,55 +1,71 @@
-using System.Net;
 using Atomic.Entities;
 using UnityEngine;
 
 namespace testAtomic
 {
-    public class DeathMechanicsBehavior: IEntityInit
+    public class DeathMechanicsBehavior: IEntityInit, IEntityEnable, IEntityDispose
     {
+        private GameObject _gameObject;
+        private DeathSettings _deathSettings;
         private Transform _poolTransform;
         private Transform _entityTransform;
-        private DeathSettings _deathSettings;
         
         public void Init(IEntity entity)
         {
-            _poolTransform = entity.GetPoolTransform();
-            _entityTransform = entity.GetEntityTransform();
             _deathSettings = entity.GetDeathSettings();
+            _entityTransform = entity.GetEntityTransform();
+            _gameObject = entity.GetEntityTransform().gameObject;
+            _poolTransform = _deathSettings.PoolTransform;
+        }
+
+        void IEntityEnable.Enable(IEntity entity)
+        {
             entity.GetOnHitPointsEmpty().Subscribe(DeathMechanics);
         }
 
         private void DeathMechanics()
         {
-            if (_deathSettings.DestroyObject)
+            if (_deathSettings.IsDestroyObject)
             {
                 SceneEntity.Destroy(_entityTransform.gameObject);
                 return;
             }
             
-            var gameObject = _entityTransform.gameObject;
-            
-            SetGameObject(gameObject);
-            
-            var collider = GetCollider(gameObject);
-            
-            SetCollider(collider);
+            SetGameObject(_gameObject);
 
-            var rigidBody = GetRigidbody(gameObject);
+            if (_deathSettings.IsComponentHided)
+            {
+                _deathSettings.HidedComponentTransform.gameObject.SetActive(false);
+            }
             
-            SetRigidbody(rigidBody);
+            
+            var collider = GetCollider(_gameObject);
+
+            if (collider)
+            {
+                SetCollider(collider);
+            }
+            
+            var rigidBody = GetRigidbody(_gameObject);
+
+            if (rigidBody)
+            {
+                SetRigidbody(rigidBody);
+            }
+
         }
 
         private void SetRigidbody(Rigidbody rigidBody)
         {
             rigidBody.isKinematic = _deathSettings.IsKinematic;
-            rigidBody.useGravity = _deathSettings.UseGravity;
+            rigidBody.useGravity = _deathSettings.IsUseGravity;
         }
 
         private void SetGameObject(GameObject gameObject)
         {
-            gameObject.SetActive(_deathSettings.SetActive);
+            gameObject.SetActive(_deathSettings.IsSetActive);
 
-            if (_deathSettings.ReturnToPool)
+            if (_deathSettings.IsReturnToPool)
             {
                 gameObject.transform.SetParent(_poolTransform);
             }
@@ -57,7 +73,7 @@ namespace testAtomic
 
         private void SetCollider(Collider collider)
         {
-            collider.enabled = _deathSettings.ColliderEnabled;
+            collider.enabled = _deathSettings.IsColliderEnabled;
 
             collider.isTrigger = _deathSettings.IsTrigger;
         }
@@ -84,6 +100,11 @@ namespace testAtomic
             }
 
             return null;
+        }
+
+        void IEntityDispose.Dispose(IEntity entity)
+        {
+            entity.GetOnHitPointsEmpty().Unsubscribe(DeathMechanics);
         }
     }
 }

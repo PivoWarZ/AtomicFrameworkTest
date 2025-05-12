@@ -12,6 +12,7 @@ namespace testAtomic
         public float Damage;
         [SerializeField] private TransformInstall _bulletTransform;
         [SerializeField] private MoveInstall _moveInstall;
+        [SerializeField] private BordersInstall _bordersInstall;
 
         public override void Install(IEntity entity)
         {
@@ -20,9 +21,11 @@ namespace testAtomic
             
             _bulletTransform.Install(entity);
             _moveInstall.Install(entity);
+            _bordersInstall.Install(entity);
 
             entity.AddBehaviour(new TransformPositionMoveBehavior());
             entity.AddBehaviour(new BulletBehavior());
+            entity.AddBehaviour(new BordersBehavior());
         }
 
         private void OnTriggerEnter(Collider other)

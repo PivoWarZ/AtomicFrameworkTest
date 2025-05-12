@@ -16,6 +16,7 @@ namespace testAtomic
         ///Keys
         public const int EntityTransform = 16; // Transform
         public const int OnEntityTriggerEnter = 18; // Event<IEntity>
+        public const int OnEntityCollisionEnter = 33; // IEvent<Collision>
 
 
         ///Extensions
@@ -54,5 +55,23 @@ namespace testAtomic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetOnEntityTriggerEnter(this IEntity obj, Event<IEntity> value) => obj.SetValue(OnEntityTriggerEnter, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEvent<Collision> GetOnEntityCollisionEnter(this IEntity obj) => obj.GetValue<IEvent<Collision>>(OnEntityCollisionEnter);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetOnEntityCollisionEnter(this IEntity obj, out IEvent<Collision> value) => obj.TryGetValue(OnEntityCollisionEnter, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddOnEntityCollisionEnter(this IEntity obj, IEvent<Collision> value) => obj.AddValue(OnEntityCollisionEnter, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasOnEntityCollisionEnter(this IEntity obj) => obj.HasValue(OnEntityCollisionEnter);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelOnEntityCollisionEnter(this IEntity obj) => obj.DelValue(OnEntityCollisionEnter);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetOnEntityCollisionEnter(this IEntity obj, IEvent<Collision> value) => obj.SetValue(OnEntityCollisionEnter, value);
     }
 }

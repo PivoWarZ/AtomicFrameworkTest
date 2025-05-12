@@ -28,7 +28,7 @@ namespace testAtomic
         {
             if (_canShoot.Value)
             {
-                var bullet = SceneEntity.Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
+                var bullet = SceneEntity.Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity, _sceneEntity.GetBulletContainer());
 
                 bullet.GetMoveDirection().Value = _shootPoint.forward;
 

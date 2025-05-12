@@ -15,6 +15,7 @@ namespace testAtomic
     {
         ///Keys
         public const int Damage = 24; // float
+        public const int HitPowerForDamage = 34; // float
 
 
         ///Extensions
@@ -35,5 +36,23 @@ namespace testAtomic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetDamage(this IEntity obj, float value) => obj.SetValue(Damage, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float GetHitPowerForDamage(this IEntity obj) => obj.GetValue<float>(HitPowerForDamage);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetHitPowerForDamage(this IEntity obj, out float value) => obj.TryGetValue(HitPowerForDamage, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddHitPowerForDamage(this IEntity obj, float value) => obj.AddValue(HitPowerForDamage, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasHitPowerForDamage(this IEntity obj) => obj.HasValue(HitPowerForDamage);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelHitPowerForDamage(this IEntity obj) => obj.DelValue(HitPowerForDamage);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetHitPowerForDamage(this IEntity obj, float value) => obj.SetValue(HitPowerForDamage, value);
     }
 }

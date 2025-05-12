@@ -155,10 +155,11 @@ MonoBehaviour:
   _bulletTransform:
     _transform: {fileID: 4184048988250639792}
   _moveInstall:
-    _moveSpeed: 10
+    _moveSpeed: 20
     _moveDirection:
       value: {x: 0, y: 0, z: 0}
-  _container: {fileID: 0}
+  _bordersInstall:
+    _zoneRange: 20
 --- !u!114 &7800211415885273789
 MonoBehaviour:
   m_ObjectHideFlags: 0

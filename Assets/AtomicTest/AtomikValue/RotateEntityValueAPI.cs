@@ -18,7 +18,6 @@ namespace testAtomic
         public const int RotateDirection = 6; // ReactiveVariable<Vector3>
         public const int LoockAtTransform = 17; // ReactiveVariable<Transform>
         public const int MinLoockDistance = 26; // float
-        public const int LoockMouseCursor = 27; // bool
         public const int CanRotate = 30; // AndExpression
 
 
@@ -94,24 +93,6 @@ namespace testAtomic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetMinLoockDistance(this IEntity obj, float value) => obj.SetValue(MinLoockDistance, value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool GetLoockMouseCursor(this IEntity obj) => obj.GetValue<bool>(LoockMouseCursor);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetLoockMouseCursor(this IEntity obj, out bool value) => obj.TryGetValue(LoockMouseCursor, out value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddLoockMouseCursor(this IEntity obj, bool value) => obj.AddValue(LoockMouseCursor, value);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasLoockMouseCursor(this IEntity obj) => obj.HasValue(LoockMouseCursor);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool DelLoockMouseCursor(this IEntity obj) => obj.DelValue(LoockMouseCursor);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetLoockMouseCursor(this IEntity obj, bool value) => obj.SetValue(LoockMouseCursor, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static AndExpression GetCanRotate(this IEntity obj) => obj.GetValue<AndExpression>(CanRotate);

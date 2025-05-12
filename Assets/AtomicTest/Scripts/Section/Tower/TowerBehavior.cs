@@ -4,15 +4,34 @@ using UnityEngine;
 
 namespace testAtomic
 {
-    public class TowerBehavior: IEntityInit, IEntityDisable
+    public class TowerBehavior: IEntityInit, IEntityEnable, IEntityDispose
     {
+        private IEntity _entity;
         private IEvent _onShoot;
+
+        private float _hitPowerForDamage;
         
         void IEntityInit.Init(IEntity entity)
         {
+            _entity = entity;
             _onShoot = entity.GetOnShootRequest();
-            
+            _hitPowerForDamage = entity.GetHitPowerForDamage();
+        }
+
+        void IEntityEnable.Enable(IEntity entity)
+        {
             entity.GetOnTimerEnd().Subscribe(Shoot);
+            entity.GetOnEntityCollisionEnter().Subscribe(OnCollisionEnter);
+        }
+        
+        private void OnCollisionEnter(Collision collision)
+        {
+            var damage = collision.relativeVelocity.magnitude;
+            
+            if (damage > _hitPowerForDamage)
+            {
+                _entity.GetOnHit().Invoke(damage);
+            }
         }
 
         private void Shoot()
@@ -20,9 +39,10 @@ namespace testAtomic
             _onShoot.Invoke();
         }
 
-        void IEntityDisable.Disable(IEntity entity)
+        public void Dispose(IEntity entity)
         {
             entity.GetOnTimerEnd().Unsubscribe(Shoot);
+            entity.GetOnEntityCollisionEnter().Unsubscribe(OnCollisionEnter);
         }
     }
 }

@@ -10,13 +10,11 @@ namespace testAtomic
     {
         [SerializeField] private ReactiveVariable<Transform> _loockTransform;
         [SerializeField] private float _minLoockDistance;
-        [SerializeField] private bool _loockMouseCursor;
         [SerializeField] private RotateInstall _rotateInstall;
         
         public void Install(IEntity entity)
         {
             entity.AddLoockAtTransform(_loockTransform);
-            entity.AddLoockMouseCursor(_loockMouseCursor);
             entity.AddMinLoockDistance(_minLoockDistance);
             
             _rotateInstall.Install(entity);

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace testAtomic
 {
     [Serializable]
-    public class ShootController: IContextInit
+    public class ShootController: IContextInit, IContextDispose
     {
         [SerializeField] private SceneEntity _sceneEntity;
         private ShootInput _shootInput;
@@ -15,11 +15,23 @@ namespace testAtomic
         {
             _shootInput = context.GetPlayerShoot();
             _shootInput.OnShoot += Shoot;
+            _shootInput.OnKick += Kick;
+        }
+
+        private void Kick()
+        {
+            _sceneEntity.GetOnKick().Invoke();
         }
 
         private void Shoot()
         {
             _sceneEntity.GetOnShootRequest()?.Invoke();
+        }
+
+        public void Dispose(IContext context)
+        {
+            _shootInput.OnShoot -= Shoot;
+            _shootInput.OnKick -= Kick;
         }
     }
 }

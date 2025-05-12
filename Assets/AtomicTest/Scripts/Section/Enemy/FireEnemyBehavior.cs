@@ -13,6 +13,7 @@ namespace testAtomic
             _enemyTransform = entity.GetEntityTransform();
             _damage = entity.GetDamage();
             entity.GetOnEntityTriggerEnter().Subscribe(OnTriggerEnter);
+            entity.GetOnEntityCollisionEnter().Subscribe(OnEntityCollisionEnter);
         }
 
         private void OnTriggerEnter(IEntity other)
@@ -22,6 +23,15 @@ namespace testAtomic
                 onHit.Invoke(_damage);
                 SceneEntity.Destroy(_enemyTransform.gameObject);
             }
+        }
+
+        private void OnEntityCollisionEnter(Collision collision)
+        {
+            if (collision.relativeVelocity.magnitude > 20)
+            {
+                SceneEntity.Destroy(_enemyTransform.gameObject);
+            }
+
         }
 
         void IEntityDispose.Dispose(IEntity entity)
