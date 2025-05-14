@@ -28,7 +28,7 @@ MonoBehaviour:
       type: Transform
     - id: 18
       name: OnEntityTriggerEnter
-      type: Event<IEntity>
+      type: IEvent<IEntity>
     - id: 33
       name: OnEntityCollisionEnter
       type: IEvent<Collision>
