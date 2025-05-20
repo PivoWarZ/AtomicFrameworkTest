@@ -16,7 +16,7 @@ MonoBehaviour:
   categories:
   - Name: Game
     Namespace: ZombieShooter
-    DirectoryPath: Assets/AtomikContext
+    DirectoryPath: Assets/AtomicHomerork/Scripts/CodegenAtomic/AtomikContext
     ClassSuffix: ContextAPI
     Imports:
     - Atomic.Entities
@@ -25,14 +25,8 @@ MonoBehaviour:
     - ZombieShooter
     items:
     - id: 1
-      name: PlayerInput
+      name: MoveInput
       type: MoveInput
-    - id: 5
-      name: PlayerShoot
-      type: ShootInput
     - id: 2
-      name: TimerContext
-      type: TimerInstall
-    - id: 3
-      name: SpawnerLocator
-      type: SpawnerLocator
+      name: ServiceLocator
+      type: ServiceLocator
