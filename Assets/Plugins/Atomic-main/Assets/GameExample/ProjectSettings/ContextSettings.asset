@@ -15,14 +15,14 @@ MonoBehaviour:
   <Inactive>k__BackingField: 0
   categories:
   - Name: Game
-    Namespace: testAtomic
-    DirectoryPath: Assets/AtomicTest/AtomikContext
+    Namespace: ZombieShooter
+    DirectoryPath: Assets/AtomikContext
     ClassSuffix: ContextAPI
     Imports:
     - Atomic.Entities
     - Atomic.Elements
     - System.Collections.Generic
-    - testAtomic
+    - ZombieShooter
     items:
     - id: 1
       name: PlayerInput

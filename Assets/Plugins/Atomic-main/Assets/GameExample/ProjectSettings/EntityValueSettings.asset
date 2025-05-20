@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EntityValueSettings
   m_EditorClassIdentifier: 
   local: 0
-  namespace: testAtomic
-  directoryPath: Assets/AtomicTest/AtomikValue
+  namespace: ZombieShooter
+  directoryPath: Assets/AtomikValue
   suffix: EntityValueAPI
   imports:
   - Atomic.Elements
