@@ -28,7 +28,8 @@ namespace ZombieShooter
         private void Move(Vector3 direction)
         {
             var directionAngle = Vector3.Angle(_playerTransform.forward, direction);
-            Debug.Log(directionAngle);
+            bool isRightSide = _playerTransform.rotation.y > 0f;
+            bool isLeftSide = _playerTransform.rotation.y < 0f;
             
             if (direction == Vector3.zero)
             {
@@ -44,14 +45,14 @@ namespace ZombieShooter
             else if (directionAngle > 45 && directionAngle < 110)
             {
                 if (direction == Vector3.right 
-                    || direction == Vector3.forward && _playerTransform.rotation.y < 0f 
-                    || direction == Vector3.back && _playerTransform.rotation.y > 0f)
+                    || direction == Vector3.forward && isLeftSide 
+                    || direction == Vector3.back && isRightSide)
                 {
                     _animator.SetBool("SideStepRight", true);
                 }
                 else if (direction == Vector3.left 
-                         || direction == Vector3.back && _playerTransform.rotation.y < 0f 
-                         || direction == Vector3.forward && _playerTransform.rotation.y > 0f)
+                         || direction == Vector3.back && isLeftSide
+                         || direction == Vector3.forward && isRightSide)
                 {
                     _animator.SetBool("SideStepLeft", true);
                 }
