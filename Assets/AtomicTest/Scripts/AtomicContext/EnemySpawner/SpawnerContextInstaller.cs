@@ -17,6 +17,13 @@ namespace testAtomic
             
             context.AddSystem(new EnemySpawnerContextBehavior());
             context.AddSystem(new TimerBehavior());
+
+            GameContext.Instance.GetSpawnerLocator();
         }
+    }
+
+    public class GameContext: SingletonSceneContext<GameContext>
+    {
+        
     }
 }

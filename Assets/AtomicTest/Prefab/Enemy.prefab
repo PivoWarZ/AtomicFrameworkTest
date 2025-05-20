@@ -116,14 +116,13 @@ MonoBehaviour:
     _loockTransform:
       value: {fileID: 0}
     _minLoockDistance: 0
-    _loockMouseCursor: 0
     _rotateInstall:
       _rotateDirection:
         value: {x: 0, y: 0, z: 0}
       _rotateSpeed: 2
   _hitPointsInstall:
     _hitpoints:
-      value: 3
+      value: 1
     IsAlive:
       value: 1
   _deathMechanicsInstall:

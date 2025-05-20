@@ -20,6 +20,8 @@ namespace testAtomic
         public const int OnShootRequest = 15; // IEvent
         public const int OnShootFired = 19; // IEvent
         public const int BulletContainer = 28; // Transform
+        public const int ShootReady = 27; // ReactiveVariable<bool>
+        public const int MaxBullet = 35; // int
 
 
         ///Extensions
@@ -130,5 +132,41 @@ namespace testAtomic
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetBulletContainer(this IEntity obj, Transform value) => obj.SetValue(BulletContainer, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ReactiveVariable<bool> GetShootReady(this IEntity obj) => obj.GetValue<ReactiveVariable<bool>>(ShootReady);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetShootReady(this IEntity obj, out ReactiveVariable<bool> value) => obj.TryGetValue(ShootReady, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddShootReady(this IEntity obj, ReactiveVariable<bool> value) => obj.AddValue(ShootReady, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasShootReady(this IEntity obj) => obj.HasValue(ShootReady);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelShootReady(this IEntity obj) => obj.DelValue(ShootReady);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetShootReady(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(ShootReady, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int GetMaxBullet(this IEntity obj) => obj.GetValue<int>(MaxBullet);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetMaxBullet(this IEntity obj, out int value) => obj.TryGetValue(MaxBullet, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddMaxBullet(this IEntity obj, int value) => obj.AddValue(MaxBullet, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasMaxBullet(this IEntity obj) => obj.HasValue(MaxBullet);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelMaxBullet(this IEntity obj) => obj.DelValue(MaxBullet);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetMaxBullet(this IEntity obj, int value) => obj.SetValue(MaxBullet, value);
     }
 }

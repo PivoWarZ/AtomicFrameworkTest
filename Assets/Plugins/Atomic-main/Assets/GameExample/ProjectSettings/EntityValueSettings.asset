@@ -80,6 +80,12 @@ MonoBehaviour:
     - id: 28
       name: BulletContainer
       type: Transform
+    - id: 27
+      name: ShootReady
+      type: ReactiveVariable<bool>
+    - id: 35
+      name: MaxBullet
+      type: int
   - name: HitPoints
     indexes:
     - id: 20
