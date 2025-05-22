@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZombieShooter
 {
-    public class VisualCharacterInstaller: SceneEntityInstallerBase
+    public class VisualInstaller: SceneEntityInstallerBase
     {
         [SerializeField] Animator _animator;
         [SerializeField] AnimationEventDispatcher _animationEventDispatcher;

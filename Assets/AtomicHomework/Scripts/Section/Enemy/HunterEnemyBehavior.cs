@@ -28,11 +28,7 @@ namespace ZombieShooter
 
         private void OnEntityCollisionEnter(Collision collision)
         {
-            if (collision.relativeVelocity.magnitude > 20)
-            {
-                SceneEntity.Destroy(_enemyTransform.gameObject);
-            }
-
+            //
         }
 
         void IEntityDispose.Dispose(IEntity entity)
