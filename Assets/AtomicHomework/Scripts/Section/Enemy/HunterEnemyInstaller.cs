@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ZombieShooter
 {
-    public class FireEnemyInstaller: SceneEntityInstallerBase
+    public class HunterEnemyInstaller: SceneEntityInstallerBase
     {
         public Event<IEntity> OnEntityTriggerEnter;
         public Event<Collision> OnEntityCollisionEnter;
@@ -32,7 +32,7 @@ namespace ZombieShooter
 
             entity.AddBehaviour(new TransformPositionMoveBehavior());
             entity.AddBehaviour(new LoockAtBehavior());
-            entity.AddBehaviour(new FireEnemyBehavior());
+            entity.AddBehaviour(new HunterEnemyBehavior());
             entity.AddBehaviour(new HitPointsBehavior());
             entity.AddBehaviour(new DeathMechanicsBehavior());
             entity.AddBehaviour(new BordersBehavior());

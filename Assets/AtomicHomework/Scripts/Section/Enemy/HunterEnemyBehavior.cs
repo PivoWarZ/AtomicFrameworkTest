@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZombieShooter
 {
-    public class FireEnemyBehavior: IEntityInit, IEntityDispose, IEntityUpdate
+    public class HunterEnemyBehavior: IEntityInit, IEntityDispose, IEntityUpdate
     {
         private Transform _enemyTransform;
         private float _damage;
@@ -18,6 +18,7 @@ namespace ZombieShooter
 
         private void OnTriggerEnter(IEntity other)
         {
+            Debug.Log("Trigger");
             if (other.TryGetOnHit(out var onHit))
             {
                 onHit.Invoke(_damage);

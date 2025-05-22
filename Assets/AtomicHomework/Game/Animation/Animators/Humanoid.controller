@@ -545,7 +545,7 @@ AnimatorController:
   - m_Name: State
     m_Type: 3
     m_DefaultFloat: 0
-    m_DefaultInt: 0
+    m_DefaultInt: 1
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
@@ -757,7 +757,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -860, y: 200, z: 0}
+  m_AnyStatePosition: {x: -790, y: 190, z: 0}
   m_EntryPosition: {x: -110, y: -130, z: 0}
   m_ExitPosition: {x: -110, y: -200, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
