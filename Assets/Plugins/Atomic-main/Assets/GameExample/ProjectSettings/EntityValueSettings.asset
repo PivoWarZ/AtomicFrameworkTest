@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   local: 0
   namespace: ZombieShooter
-  directoryPath: Assets/AtomicHomerork/Scripts/CodegenAtomic/AtomikValue
+  directoryPath: Assets/AtomicHomework/Scripts/CodegenAtomic/AtomikValue
   suffix: EntityValueAPI
   imports:
   - Atomic.Elements
@@ -75,11 +75,14 @@ MonoBehaviour:
       name: OnShootRequest
       type: IEvent
     - id: 19
-      name: OnShootFired
+      name: OnShootAction
       type: IEvent
     - id: 28
       name: BulletContainer
       type: Transform
+    - id: 35
+      name: OnShootEvent
+      type: IEvent
   - name: HitPoints
     indexes:
     - id: 20
@@ -147,3 +150,6 @@ MonoBehaviour:
     - id: 27
       name: Animator
       type: Animator
+    - id: 36
+      name: AnimationEventDispatcher
+      type: AnimationEventDispatcher

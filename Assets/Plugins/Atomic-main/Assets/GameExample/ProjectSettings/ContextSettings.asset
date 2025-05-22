@@ -16,7 +16,7 @@ MonoBehaviour:
   categories:
   - Name: Game
     Namespace: ZombieShooter
-    DirectoryPath: Assets/AtomicHomerork/Scripts/CodegenAtomic/AtomikContext
+    DirectoryPath: Assets/AtomicHomework/Scripts/CodegenAtomic/AtomikContext
     ClassSuffix: ContextAPI
     Imports:
     - Atomic.Entities

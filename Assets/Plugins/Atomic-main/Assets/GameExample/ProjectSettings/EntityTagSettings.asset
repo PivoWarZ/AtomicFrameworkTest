@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cafd615e6bf6417a8c69a8026da797c3, type: 3}
   m_Name: EntityTagSettings
   m_EditorClassIdentifier: 
-  namespace: Atomic.Entities
-  directoryPath: Assets/GameExample/Scripts/Codegen
+  namespace: ZombieShooter
+  directoryPath: Assets/AtomicHomework/Scripts/CodegenAtomic
   className: EntityTagAPI
   items:
   - id: 1
