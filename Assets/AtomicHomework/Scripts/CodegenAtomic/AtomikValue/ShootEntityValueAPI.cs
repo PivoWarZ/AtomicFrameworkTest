@@ -21,6 +21,8 @@ namespace ZombieShooter
         public const int OnShootAction = 19; // IEvent
         public const int BulletContainer = 28; // Transform
         public const int OnShootEvent = 35; // IEvent
+        public const int BulletsLimit = 37; // ReactiveVariable<int>
+        public const int IsShootReady = 38; // ReactiveVariable<bool>
 
 
         ///Extensions
@@ -149,5 +151,41 @@ namespace ZombieShooter
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetOnShootEvent(this IEntity obj, IEvent value) => obj.SetValue(OnShootEvent, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ReactiveVariable<int> GetBulletsLimit(this IEntity obj) => obj.GetValue<ReactiveVariable<int>>(BulletsLimit);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetBulletsLimit(this IEntity obj, out ReactiveVariable<int> value) => obj.TryGetValue(BulletsLimit, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddBulletsLimit(this IEntity obj, ReactiveVariable<int> value) => obj.AddValue(BulletsLimit, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasBulletsLimit(this IEntity obj) => obj.HasValue(BulletsLimit);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelBulletsLimit(this IEntity obj) => obj.DelValue(BulletsLimit);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetBulletsLimit(this IEntity obj, ReactiveVariable<int> value) => obj.SetValue(BulletsLimit, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ReactiveVariable<bool> GetIsShootReady(this IEntity obj) => obj.GetValue<ReactiveVariable<bool>>(IsShootReady);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetIsShootReady(this IEntity obj, out ReactiveVariable<bool> value) => obj.TryGetValue(IsShootReady, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddIsShootReady(this IEntity obj, ReactiveVariable<bool> value) => obj.AddValue(IsShootReady, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasIsShootReady(this IEntity obj) => obj.HasValue(IsShootReady);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelIsShootReady(this IEntity obj) => obj.DelValue(IsShootReady);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetIsShootReady(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(IsShootReady, value);
     }
 }

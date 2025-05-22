@@ -7,12 +7,14 @@ namespace ZombieShooter
     public class VisualCharacterBehavior: IEntityInit, IEntityEnable, IEntityDispose
 
     {
+        private IEntity _playerEntity;
         private Animator _animator;
         private Transform _playerTransform;
         private AnimationEventDispatcher _animationEventDispatcher;
         private IEvent _onShootAction;
         void IEntityInit.Init(IEntity entity)
         {
+            _playerEntity = entity;
             _playerTransform = entity.GetEntityTransform();
             _animator = entity.GetAnimator();
             _onShootAction = entity.GetOnShootAction();
@@ -42,7 +44,7 @@ namespace ZombieShooter
 
         private void ShootRequest()
         {
-            if (!_animator.GetBool("isRun") && !_animator.GetBool("isTakeAim"))
+            if (!_animator.GetBool("isRun") && _playerEntity.GetIsShootReady().Value)
             {
                 _animator.SetBool("isTakeAim", true);
             }
@@ -64,6 +66,9 @@ namespace ZombieShooter
         
         void IEntityDispose.Dispose(IEntity entity)
         {
+            _animationEventDispatcher.OnEventReceived -= EventReceived;
+            entity.GetOnShootRequest().Unsubscribe(ShootRequest);
+            entity.GetOnShootEvent().Unsubscribe(ShootEvent);
             entity.GetMoveDirection().Unsubscribe(Move);
         }
     }

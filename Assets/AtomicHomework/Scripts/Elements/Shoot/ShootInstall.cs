@@ -13,6 +13,9 @@ namespace ZombieShooter
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private Transform _bulletContainer;
         [SerializeField] private AndExpression _canShoot;
+        
+        [SerializeField] private BulletsLimitBehavior _bulletsLimitBehavior;
+        [SerializeField] private ShootColdownBehavior _shootColdownBehavior;
 
         public void Install(IEntity entity)
         {
@@ -24,6 +27,12 @@ namespace ZombieShooter
             entity.AddShootPoint(_shootPoint);
             entity.AddCanShoot(_canShoot);
             entity.AddBulletContainer(_bulletContainer);
+            
+            _bulletsLimitBehavior.Install(entity);
+            _shootColdownBehavior.Install(entity);
+            
+            entity.AddBehaviour(_bulletsLimitBehavior);
+            entity.AddBehaviour(_shootColdownBehavior);
         }
     }
 }

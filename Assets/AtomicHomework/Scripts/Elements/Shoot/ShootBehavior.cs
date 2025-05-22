@@ -30,7 +30,6 @@ namespace ZombieShooter
 
         private void Shoot()
         {
-            Debug.Log("Shoot");
             if (_canShoot.Value)
             {
                 var bullet = SceneEntity.Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity, _sceneEntity.GetBulletContainer());

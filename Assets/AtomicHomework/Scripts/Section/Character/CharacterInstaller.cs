@@ -31,8 +31,12 @@ namespace ZombieShooter
         private void SetCondition(IEntity entity)
         {
             entity.GetCanMove().Append(entity.GetIsAlive());
+            
             entity.GetCanRotate().Append(entity.GetIsAlive());
+            
             entity.GetCanShoot().Append(entity.GetIsAlive());
+            entity.GetCanShoot().Append(() => entity.GetBulletsLimit().Value > 0);
+            entity.GetCanShoot().Append(entity.GetIsShootReady());
         }
     }
 }

@@ -15,25 +15,23 @@ namespace ZombieShooter
         {
             _sceneEntity = context.GetServiceLocator().Player;
             _shootInput = context.GetShootInput();
+            
             _shootInput.OnShoot += Shoot;
-            _shootInput.OnKick += Kick;
         }
 
-        private void Kick()
+        private void Idle()
         {
-            _sceneEntity.GetOnKick().Invoke();
+           
         }
 
         private void Shoot()
         {
             _sceneEntity.GetOnShootRequest()?.Invoke();
-            Debug.Log("Shoot request");
         }
 
         public void Dispose(IContext context)
         {
             _shootInput.OnShoot -= Shoot;
-            _shootInput.OnKick -= Kick;
         }
     }
 }

@@ -83,6 +83,12 @@ MonoBehaviour:
     - id: 35
       name: OnShootEvent
       type: IEvent
+    - id: 37
+      name: BulletsLimit
+      type: ReactiveVariable<int>
+    - id: 38
+      name: IsShootReady
+      type: ReactiveVariable<bool>
   - name: HitPoints
     indexes:
     - id: 20
