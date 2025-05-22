@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZombieShooter
 {
-    public class VisualCharacterBehavior: IEntityInit, IEntityEnable, IEntityUpdate, IEntityDispose
+    public class VisualCharacterBehavior: IEntityInit, IEntityEnable, IEntityDispose
 
     {
         private Animator _animator;
@@ -17,24 +17,17 @@ namespace ZombieShooter
         void IEntityEnable.Enable(IEntity entity)
         {
             entity.GetMoveDirection().Subscribe(Move);
+            entity.GetOnShootRequest().Subscribe(ShootRequest);
         }
 
-
-        void IEntityUpdate.OnUpdate(IEntity entity, float deltaTime)
+        private void ShootRequest()
         {
-            
+            throw new System.NotImplementedException();
         }
 
         private void Move(Vector3 direction)
         {
-            if (direction == Vector3.zero)
-            {
-                _animator.SetFloat("YAxis", 0);
-                _animator.SetFloat("XAxis", 0);
-            }
-            
             var inverseDirection = _playerTransform.InverseTransformDirection(direction);
-            Debug.Log(inverseDirection);
             
             _animator.SetFloat("YAxis", inverseDirection.z);
             _animator.SetFloat("XAxis", inverseDirection.x);
@@ -42,7 +35,7 @@ namespace ZombieShooter
         
         void IEntityDispose.Dispose(IEntity entity)
         {
-            
+            entity.GetMoveDirection().Unsubscribe(Move);
         }
     }
 }

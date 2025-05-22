@@ -17,6 +17,7 @@ namespace ZombieShooter
             if (Input.GetKeyDown(_shootKey))
             {
                 OnShoot?.Invoke();
+                Debug.Log("Shoot Input");
             }
             else if (Input.GetKey(_kickKey))
             {

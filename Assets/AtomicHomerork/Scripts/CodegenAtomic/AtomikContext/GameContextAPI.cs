@@ -17,6 +17,7 @@ namespace ZombieShooter
 		///Keys
 		public const int MoveInput = 1; // MoveInput
 		public const int ServiceLocator = 2; // ServiceLocator
+		public const int ShootInput = 3; // ShootInput
 
 
 		///Extensions
@@ -55,5 +56,23 @@ namespace ZombieShooter
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasServiceLocator(this IContext obj) => obj.HasValue(ServiceLocator);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static ShootInput GetShootInput(this IContext obj) => obj.ResolveValue<ShootInput>(ShootInput);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetShootInput(this IContext obj, out ShootInput value) => obj.TryResolveValue(ShootInput, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddShootInput(this IContext obj, ShootInput value) => obj.AddValue(ShootInput, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelShootInput(this IContext obj) => obj.DelValue(ShootInput);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetShootInput(this IContext obj, ShootInput value) => obj.SetValue(ShootInput, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasShootInput(this IContext obj) => obj.HasValue(ShootInput);
     }
 }

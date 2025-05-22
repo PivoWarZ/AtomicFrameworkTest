@@ -8,12 +8,13 @@ namespace ZombieShooter
     [Serializable]
     public class ShootController: IContextInit, IContextDispose
     {
-        [SerializeField] private SceneEntity _sceneEntity;
+        private SceneEntity _sceneEntity;
         private ShootInput _shootInput;
         
         public void Init(IContext context)
         {
-            //_shootInput = context.GetPlayerShoot();
+            _sceneEntity = context.GetServiceLocator().Player;
+            _shootInput = context.GetShootInput();
             _shootInput.OnShoot += Shoot;
             _shootInput.OnKick += Kick;
         }
@@ -26,6 +27,7 @@ namespace ZombieShooter
         private void Shoot()
         {
             _sceneEntity.GetOnShootRequest()?.Invoke();
+            Debug.Log("Shoot request");
         }
 
         public void Dispose(IContext context)

@@ -3,12 +3,17 @@ using UnityEngine;
 
 namespace ZombieShooter
 {
-    public class LoockMouseCursorBehavior: IEntityUpdate, IEntityFixedUpdate
+    public class LoockMouseCursorBehavior: IEntityUpdate, IEntityFixedUpdate, IEntityInit
     {
         private Vector3 _mousePosition;
         private Ray _ray;
         private RaycastHit _hit;
         private Vector3 _position;
+        
+        void IEntityInit.Init(IEntity entity)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
 
         void IEntityUpdate.OnUpdate(IEntity entity, float deltaTime)
         {

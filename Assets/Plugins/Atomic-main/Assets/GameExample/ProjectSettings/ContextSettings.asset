@@ -30,3 +30,6 @@ MonoBehaviour:
     - id: 2
       name: ServiceLocator
       type: ServiceLocator
+    - id: 3
+      name: ShootInput
+      type: ShootInput
