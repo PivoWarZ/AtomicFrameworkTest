@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ZombieShooter
 {
-    public class EnemyVisualBehavior: IEntityInit, IEntityEnable, IEntityDispose
+    public class EnemyVisualBehavior: IEntityInit, IEntityEnable, IEntityDispose, IEntityUpdate
     {
         private IEntity _sceneEntity;
         private Animator _animator;
@@ -20,10 +20,21 @@ namespace ZombieShooter
             _onShootAction = entity.GetOnShootAction();
             _animationEventDispatcher = entity.GetAnimationEventDispatcher();
         }
-
+        
         void IEntityEnable.Enable(IEntity entity)
         {
             entity.GetOnHitPointsEmpty().Subscribe(DeathEvent);
+            entity.GetIsAttackDistance().Subscribe(AttackDistance);
+        }
+
+        private void AttackDistance(bool shoot)
+        {
+                _animator.SetBool("isAttack", shoot);
+        }
+
+        void IEntityUpdate.OnUpdate(IEntity entity, float deltaTime)
+        {
+            
         }
 
         private void DeathEvent()
@@ -35,5 +46,6 @@ namespace ZombieShooter
         {
             entity.GetOnHitPointsEmpty().Unsubscribe(DeathEvent);
         }
+
     }
 }

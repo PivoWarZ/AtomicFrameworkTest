@@ -8,7 +8,7 @@ namespace ZombieShooter
     [Serializable]
     public class LoockAtInstall : IEntityInstaller
     {
-        [SerializeField] private ReactiveVariable<Transform> _loockTransform;
+        [SerializeField] private Transform _loockTransform;
         [SerializeField] private float _minLoockDistance;
         [SerializeField] private RotateInstall _rotateInstall;
         

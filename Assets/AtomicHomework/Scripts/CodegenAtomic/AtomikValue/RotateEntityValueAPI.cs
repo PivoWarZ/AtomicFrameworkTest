@@ -16,7 +16,7 @@ namespace ZombieShooter
         ///Keys
         public const int RotateSpeed = 8; // ReactiveVariable<float>
         public const int RotateDirection = 6; // ReactiveVariable<Vector3>
-        public const int LoockAtTransform = 17; // ReactiveVariable<Transform>
+        public const int LoockAtTransform = 17; // Transform
         public const int MinLoockDistance = 26; // float
         public const int CanRotate = 30; // AndExpression
 
@@ -59,13 +59,13 @@ namespace ZombieShooter
         public static void SetRotateDirection(this IEntity obj, ReactiveVariable<Vector3> value) => obj.SetValue(RotateDirection, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ReactiveVariable<Transform> GetLoockAtTransform(this IEntity obj) => obj.GetValue<ReactiveVariable<Transform>>(LoockAtTransform);
+        public static Transform GetLoockAtTransform(this IEntity obj) => obj.GetValue<Transform>(LoockAtTransform);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetLoockAtTransform(this IEntity obj, out ReactiveVariable<Transform> value) => obj.TryGetValue(LoockAtTransform, out value);
+        public static bool TryGetLoockAtTransform(this IEntity obj, out Transform value) => obj.TryGetValue(LoockAtTransform, out value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddLoockAtTransform(this IEntity obj, ReactiveVariable<Transform> value) => obj.AddValue(LoockAtTransform, value);
+        public static bool AddLoockAtTransform(this IEntity obj, Transform value) => obj.AddValue(LoockAtTransform, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasLoockAtTransform(this IEntity obj) => obj.HasValue(LoockAtTransform);
@@ -74,7 +74,7 @@ namespace ZombieShooter
         public static bool DelLoockAtTransform(this IEntity obj) => obj.DelValue(LoockAtTransform);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetLoockAtTransform(this IEntity obj, ReactiveVariable<Transform> value) => obj.SetValue(LoockAtTransform, value);
+        public static void SetLoockAtTransform(this IEntity obj, Transform value) => obj.SetValue(LoockAtTransform, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float GetMinLoockDistance(this IEntity obj) => obj.GetValue<float>(MinLoockDistance);

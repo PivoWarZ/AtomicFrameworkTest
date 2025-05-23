@@ -23,6 +23,8 @@ namespace ZombieShooter
         public const int OnShootEvent = 35; // IEvent
         public const int BulletsLimit = 37; // ReactiveVariable<int>
         public const int IsShootReady = 38; // ReactiveVariable<bool>
+        public const int EnemyAttackDistance = 39; // ReactiveVariable<float>
+        public const int IsAttackDistance = 40; // ReactiveVariable<bool>
 
 
         ///Extensions
@@ -187,5 +189,41 @@ namespace ZombieShooter
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetIsShootReady(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(IsShootReady, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ReactiveVariable<float> GetEnemyAttackDistance(this IEntity obj) => obj.GetValue<ReactiveVariable<float>>(EnemyAttackDistance);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetEnemyAttackDistance(this IEntity obj, out ReactiveVariable<float> value) => obj.TryGetValue(EnemyAttackDistance, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddEnemyAttackDistance(this IEntity obj, ReactiveVariable<float> value) => obj.AddValue(EnemyAttackDistance, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasEnemyAttackDistance(this IEntity obj) => obj.HasValue(EnemyAttackDistance);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelEnemyAttackDistance(this IEntity obj) => obj.DelValue(EnemyAttackDistance);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetEnemyAttackDistance(this IEntity obj, ReactiveVariable<float> value) => obj.SetValue(EnemyAttackDistance, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ReactiveVariable<bool> GetIsAttackDistance(this IEntity obj) => obj.GetValue<ReactiveVariable<bool>>(IsAttackDistance);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetIsAttackDistance(this IEntity obj, out ReactiveVariable<bool> value) => obj.TryGetValue(IsAttackDistance, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddIsAttackDistance(this IEntity obj, ReactiveVariable<bool> value) => obj.AddValue(IsAttackDistance, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasIsAttackDistance(this IEntity obj) => obj.HasValue(IsAttackDistance);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelIsAttackDistance(this IEntity obj) => obj.DelValue(IsAttackDistance);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetIsAttackDistance(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(IsAttackDistance, value);
     }
 }

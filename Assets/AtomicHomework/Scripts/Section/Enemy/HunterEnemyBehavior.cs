@@ -38,6 +38,14 @@ namespace ZombieShooter
 
         void IEntityUpdate.OnUpdate(IEntity entity, float deltaTime)
         {
+            var distance = (entity.GetLoockAtTransform().position - entity.GetEntityTransform().position).magnitude;
+
+            if (distance <= entity.GetEnemyAttackDistance().Value)
+            {
+                entity.GetIsAttackDistance().Value = true;
+                return;
+            }
+
             entity.GetMoveDirection().Value = _enemyTransform.forward;
         }
     }

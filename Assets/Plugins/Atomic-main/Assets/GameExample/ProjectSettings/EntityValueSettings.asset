@@ -53,7 +53,7 @@ MonoBehaviour:
       type: ReactiveVariable<Vector3>
     - id: 17
       name: LoockAtTransform
-      type: ReactiveVariable<Transform>
+      type: Transform
     - id: 26
       name: MinLoockDistance
       type: float
@@ -88,6 +88,12 @@ MonoBehaviour:
       type: ReactiveVariable<int>
     - id: 38
       name: IsShootReady
+      type: ReactiveVariable<bool>
+    - id: 39
+      name: EnemyAttackDistance
+      type: ReactiveVariable<float>
+    - id: 40
+      name: IsAttackDistance
       type: ReactiveVariable<bool>
   - name: HitPoints
     indexes:

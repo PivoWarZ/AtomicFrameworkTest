@@ -1,5 +1,6 @@
 using Atomic.Elements;
 using Atomic.Entities;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ZombieShooter
@@ -8,7 +9,10 @@ namespace ZombieShooter
     {
         public Event<IEntity> OnEntityTriggerEnter;
         public Event<Collision> OnEntityCollisionEnter;
-        public float Damage;
+        
+        [SerializeField] private float Damage;
+        [SerializeField] private ReactiveVariable<float> _enemyAttackDistance = new(1f);
+        [SerializeField] private ReactiveVariable<bool> _isAttackDistance = new(false);
         
         [SerializeField] private TransformInstall _enemyTransform;
         [SerializeField] private MoveInstall _moveInstall;
@@ -21,7 +25,10 @@ namespace ZombieShooter
         {
             entity.AddOnEntityTriggerEnter(OnEntityTriggerEnter);
             entity.AddOnEntityCollisionEnter(OnEntityCollisionEnter);
-            entity.AddBulletDamage(Damage);
+            
+            entity.AddDamage(Damage);
+            entity.AddEnemyAttackDistance(_enemyAttackDistance);
+            entity.AddIsAttackDistance(_isAttackDistance);
             
             _hitPointsInstall.Install(entity);
             _enemyTransform.Install(entity);

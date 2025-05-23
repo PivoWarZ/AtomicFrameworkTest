@@ -36,7 +36,7 @@ namespace ZombieShooter
             Transform randomPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
             var enemy = SceneEntity.Instantiate(_enemyPrefab, randomPoint);
             enemy.GetEntityTransform().SetParent(_container);
-            enemy.GetLoockAtTransform().Value = _character;
+            //enemy.GetLoockAtTransform() = _character;
             _timer.OnTimerStart.Invoke(_timer.Cooldown);
             _countdown = Random.Range(_timer.Cooldown, _timer.Cooldown + _spawnSpread);
             _spawnSpread = _timer.Cooldown;

@@ -10,7 +10,7 @@ namespace ZombieShooter
         
         public void OnUpdate(IEntity entity, float deltaTime)
         {
-            _direction = entity.GetLoockAtTransform().Value.position - entity.GetEntityTransform().position;
+            _direction = entity.GetLoockAtTransform().position - entity.GetEntityTransform().position;
             _distance = _direction.magnitude;
         }
         
