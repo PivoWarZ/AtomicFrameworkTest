@@ -4,37 +4,38 @@ using UnityEngine;
 
 namespace ZombieShooter
 {
-    public class EnemyVisualBehavior: IEntityInit, IEntityEnable, IEntityDispose, IEntityUpdate
+    public class VisualEnemyBehavior: IEntityInit, IEntityEnable, IEntityDispose
     {
-        private IEntity _sceneEntity;
         private Animator _animator;
-        private Transform _sceneEntityTransform;
-        private AnimationEventDispatcher _animationEventDispatcher;
-        private IEvent _onShootAction;
+        private IEntity _entity;
         
         public void Init(IEntity entity)
         {
-            _sceneEntity = entity;
-            _sceneEntityTransform = entity.GetEntityTransform();
             _animator = entity.GetAnimator();
-            _onShootAction = entity.GetOnShootAction();
-            _animationEventDispatcher = entity.GetAnimationEventDispatcher();
+            _entity = entity;
         }
         
         void IEntityEnable.Enable(IEntity entity)
         {
             entity.GetOnHitPointsEmpty().Subscribe(DeathEvent);
             entity.GetIsAttackDistance().Subscribe(AttackDistance);
+            entity.GetDealTickDamage().Subscribe(DealDamage);
+            entity.GetOnTakeDamageEvent().Subscribe(DamageEvent);
+        }
+
+        private void DamageEvent()
+        {
+            _entity.GetParticlesContainer().TakeDamageParticle.Play();
+        }
+
+        private void DealDamage()
+        {
+            _animator.SetTrigger("DealDamage");
         }
 
         private void AttackDistance(bool shoot)
         {
-                _animator.SetBool("isAttack", shoot);
-        }
-
-        void IEntityUpdate.OnUpdate(IEntity entity, float deltaTime)
-        {
-            
+            _animator.SetBool("isAttackDistance", shoot);
         }
 
         private void DeathEvent()
@@ -46,6 +47,5 @@ namespace ZombieShooter
         {
             entity.GetOnHitPointsEmpty().Unsubscribe(DeathEvent);
         }
-
     }
 }

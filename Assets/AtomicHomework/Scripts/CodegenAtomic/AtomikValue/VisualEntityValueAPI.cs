@@ -16,6 +16,7 @@ namespace ZombieShooter
         ///Keys
         public const int Animator = 27; // Animator
         public const int AnimationEventDispatcher = 36; // AnimationEventDispatcher
+        public const int ParticlesContainer = 45; // ParticlesContainer
 
 
         ///Extensions
@@ -54,5 +55,23 @@ namespace ZombieShooter
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetAnimationEventDispatcher(this IEntity obj, AnimationEventDispatcher value) => obj.SetValue(AnimationEventDispatcher, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ParticlesContainer GetParticlesContainer(this IEntity obj) => obj.GetValue<ParticlesContainer>(ParticlesContainer);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetParticlesContainer(this IEntity obj, out ParticlesContainer value) => obj.TryGetValue(ParticlesContainer, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddParticlesContainer(this IEntity obj, ParticlesContainer value) => obj.AddValue(ParticlesContainer, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasParticlesContainer(this IEntity obj) => obj.HasValue(ParticlesContainer);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelParticlesContainer(this IEntity obj) => obj.DelValue(ParticlesContainer);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetParticlesContainer(this IEntity obj, ParticlesContainer value) => obj.SetValue(ParticlesContainer, value);
     }
 }

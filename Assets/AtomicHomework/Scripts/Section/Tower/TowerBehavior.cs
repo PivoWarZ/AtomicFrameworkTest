@@ -30,7 +30,7 @@ namespace ZombieShooter
             
             if (damage > _hitPowerForDamage)
             {
-                _entity.GetOnHit().Invoke(damage);
+                _entity.GetOnTakeDamageAction().Invoke(damage);
             }
         }
 

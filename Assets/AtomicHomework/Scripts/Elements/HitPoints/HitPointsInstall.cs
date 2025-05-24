@@ -9,16 +9,18 @@ namespace ZombieShooter
     [Serializable]
     public class HitPointsInstall : IEntityInstaller
     {
-        public Event<float> OnHit;
+        public Event<float> OnTakeDamageAction;
+        public Event OnTakeDamageEvent;
         public Event OnHitPointsEmpty;
 
         [SerializeField] private ReactiveVariable<float> _hitpoints = 3;
-        public ReactiveVariable<bool> IsAlive = true;
+        public ReactiveVariable<bool> IsAlive = new(true);
 
         public void Install(IEntity entity)
         {
             entity.AddOnHitPointsEmpty(OnHitPointsEmpty);
-            entity.AddOnHit(OnHit);
+            entity.AddOnTakeDamageAction(OnTakeDamageAction);
+            entity.AddOnTakeDamageEvent(OnTakeDamageEvent);
             entity.AddHitPoints(_hitpoints);
             entity.AddIsAlive(new ReactiveVariable<bool>(IsAlive.Value));
         }

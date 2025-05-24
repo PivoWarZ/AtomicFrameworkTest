@@ -16,8 +16,9 @@ namespace ZombieShooter
         ///Keys
         public const int HitPoints = 20; // ReactiveVariable<float>
         public const int IsAlive = 21; // ReactiveVariable<bool>
-        public const int OnHit = 22; // IEvent<float>
+        public const int OnTakeDamageAction = 22; // IEvent<float>
         public const int OnHitPointsEmpty = 3; // IEvent
+        public const int OnTakeDamageEvent = 46; // IEvent
 
 
         ///Extensions
@@ -58,22 +59,22 @@ namespace ZombieShooter
         public static void SetIsAlive(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(IsAlive, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static IEvent<float> GetOnHit(this IEntity obj) => obj.GetValue<IEvent<float>>(OnHit);
+        public static IEvent<float> GetOnTakeDamageAction(this IEntity obj) => obj.GetValue<IEvent<float>>(OnTakeDamageAction);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool TryGetOnHit(this IEntity obj, out IEvent<float> value) => obj.TryGetValue(OnHit, out value);
+        public static bool TryGetOnTakeDamageAction(this IEntity obj, out IEvent<float> value) => obj.TryGetValue(OnTakeDamageAction, out value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool AddOnHit(this IEntity obj, IEvent<float> value) => obj.AddValue(OnHit, value);
+        public static bool AddOnTakeDamageAction(this IEntity obj, IEvent<float> value) => obj.AddValue(OnTakeDamageAction, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasOnHit(this IEntity obj) => obj.HasValue(OnHit);
+        public static bool HasOnTakeDamageAction(this IEntity obj) => obj.HasValue(OnTakeDamageAction);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool DelOnHit(this IEntity obj) => obj.DelValue(OnHit);
+        public static bool DelOnTakeDamageAction(this IEntity obj) => obj.DelValue(OnTakeDamageAction);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SetOnHit(this IEntity obj, IEvent<float> value) => obj.SetValue(OnHit, value);
+        public static void SetOnTakeDamageAction(this IEntity obj, IEvent<float> value) => obj.SetValue(OnTakeDamageAction, value);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEvent GetOnHitPointsEmpty(this IEntity obj) => obj.GetValue<IEvent>(OnHitPointsEmpty);
@@ -92,5 +93,23 @@ namespace ZombieShooter
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetOnHitPointsEmpty(this IEntity obj, IEvent value) => obj.SetValue(OnHitPointsEmpty, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEvent GetOnTakeDamageEvent(this IEntity obj) => obj.GetValue<IEvent>(OnTakeDamageEvent);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetOnTakeDamageEvent(this IEntity obj, out IEvent value) => obj.TryGetValue(OnTakeDamageEvent, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddOnTakeDamageEvent(this IEntity obj, IEvent value) => obj.AddValue(OnTakeDamageEvent, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasOnTakeDamageEvent(this IEntity obj) => obj.HasValue(OnTakeDamageEvent);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelOnTakeDamageEvent(this IEntity obj) => obj.DelValue(OnTakeDamageEvent);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetOnTakeDamageEvent(this IEntity obj, IEvent value) => obj.SetValue(OnTakeDamageEvent, value);
     }
 }

@@ -6,17 +6,15 @@ namespace ZombieShooter
 {
     public class SpawnerContextInstaller: SceneContextInstallerBase
     {
-        [SerializeField] SpawnerLocator _spawnerLocator;
-        [SerializeField] TimerInstall _timerInstall;
+        [SerializeField] private SceneEntity[] _enemies;
+        [SerializeField] private float  _spawnTime;
+        [SerializeField] private Transform[] _spawnPoints;
         
         public override void Install(IContext context)
         {
-            //context.AddSpawnerLocator(_spawnerLocator);
-            //context.AddTimerContext(_timerInstall);
-            TimerBehavior behavior = new TimerBehavior();
+            context.AddSpawnPoints(_spawnPoints);
             
             context.AddSystem(new EnemySpawnerContextBehavior());
-            context.AddSystem(new TimerBehavior());
         }
     }
 }

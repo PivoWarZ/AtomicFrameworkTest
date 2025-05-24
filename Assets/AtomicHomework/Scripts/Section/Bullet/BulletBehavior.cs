@@ -18,9 +18,9 @@ namespace ZombieShooter
         private void OnTriggerEnter(IEntity other)
         {
             
-            if (other.TryGetOnHit(out var onHit))
+            if (other.TryGetOnTakeDamageAction(out var OnTakeDamage))
             {
-                onHit.Invoke(_damage);
+                OnTakeDamage.Invoke(_damage);
                 SceneEntity.Destroy(_bulletTransform.gameObject);
             }
 

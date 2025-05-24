@@ -33,3 +33,6 @@ MonoBehaviour:
     - id: 3
       name: ShootInput
       type: ShootInput
+    - id: 4
+      name: SpawnPoints
+      type: 'Transform[]'

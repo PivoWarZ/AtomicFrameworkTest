@@ -3,50 +3,41 @@ using UnityEngine;
 
 namespace ZombieShooter
 {
-    public class HunterEnemyBehavior: IEntityInit, IEntityDispose, IEntityUpdate
+    public class HunterEnemyBehavior: IEntityInit, IEntityDispose, IEntityUpdate, IEntityEnable
     {
         private Transform _enemyTransform;
         private float _damage;
+        private IEntity _target;
         
         void IEntityInit.Init(IEntity entity)
         {
+            _target = entity.GetLoockAtTransform().gameObject.GetComponent<IEntity>();
             _enemyTransform = entity.GetEntityTransform();
             _damage = entity.GetDamage();
-            entity.GetOnEntityTriggerEnter().Subscribe(OnTriggerEnter);
-            entity.GetOnEntityCollisionEnter().Subscribe(OnEntityCollisionEnter);
         }
 
-        private void OnTriggerEnter(IEntity other)
+        public void Enable(IEntity entity)
         {
-            Debug.Log("Trigger");
-            if (other.TryGetOnHit(out var onHit))
-            {
-                onHit.Invoke(_damage);
-                SceneEntity.Destroy(_enemyTransform.gameObject);
-            }
+            entity.GetDealTickDamage().Subscribe(DealDamage);
         }
-
-        private void OnEntityCollisionEnter(Collision collision)
+        
+        private void DealDamage()
         {
-            //
+            _target.GetOnTakeDamageAction().Invoke(_damage);
         }
-
-        void IEntityDispose.Dispose(IEntity entity)
-        {
-            entity.GetOnEntityTriggerEnter().Unsubscribe(OnTriggerEnter);
-        }
-
+        
         void IEntityUpdate.OnUpdate(IEntity entity, float deltaTime)
         {
-            var distance = (entity.GetLoockAtTransform().position - entity.GetEntityTransform().position).magnitude;
-
-            if (distance <= entity.GetEnemyAttackDistance().Value)
+            if (entity.GetCanMove().Value)
             {
-                entity.GetIsAttackDistance().Value = true;
-                return;
+                entity.GetMoveDirection().Value = _enemyTransform.forward;
             }
-
-            entity.GetMoveDirection().Value = _enemyTransform.forward;
         }
+        
+        void IEntityDispose.Dispose(IEntity entity)
+        {
+            entity.GetDealTickDamage().Unsubscribe(DealDamage);
+        }
+
     }
 }

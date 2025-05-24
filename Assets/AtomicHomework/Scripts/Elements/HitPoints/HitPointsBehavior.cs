@@ -12,20 +12,24 @@ namespace ZombieShooter
         {
             _entity = entity;
             
-            entity.GetOnHit().Subscribe(TakeDamage);
+            entity.GetOnTakeDamageAction().Subscribe(TakeDamage);
         }
 
         private void TakeDamage(float damage)
-        { 
-            float hitpoints = _entity.GetHitPoints().Value;
-            
-            hitpoints = Mathf.Max(0, hitpoints - damage);
-            _entity.GetHitPoints().Value = hitpoints;
-
-            if (hitpoints <= 0)
+        {
+            if (_entity.GetIsAlive().Value)
             {
-                _entity.GetIsAlive().Value = false;
-                _entity.GetOnHitPointsEmpty().Invoke();
+                float hitpoints = _entity.GetHitPoints().Value;
+                hitpoints = Mathf.Max(0, hitpoints - damage);
+                _entity.GetHitPoints().Value = hitpoints;
+                
+                _entity.GetOnTakeDamageEvent().Invoke();
+                    
+                if (hitpoints <= 0)
+                {
+                    _entity.GetIsAlive().Value = false;
+                    _entity.GetOnHitPointsEmpty().Invoke();
+                }
             }
         }
     }

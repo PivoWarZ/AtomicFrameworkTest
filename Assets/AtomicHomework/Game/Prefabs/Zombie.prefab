@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 3897694563487499090}
   - component: {fileID: 6273702404549578461}
   - component: {fileID: -8466401314961011124}
+  - component: {fileID: 2408633563325951068}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -168,6 +169,7 @@ MonoBehaviour:
   installOnAwake: 1
   installPipeline:
   - {fileID: -8466401314961011124}
+  - {fileID: 2408633563325951068}
   onInstalled:
     m_PersistentCalls:
       m_Calls: []
@@ -195,7 +197,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 001113dda3ab477ba001491d25c7107f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 0}
   Damage: 1
+  _damagePerSecond:
+    _damageColdown:
+      value: 1
+  _attackRange:
+    _enemyAttackDistance:
+      value: 1
+    _isAttackDistance:
+      value: 0
   _enemyTransform:
     _transform: {fileID: 7964997623459932075}
   _moveInstall:
@@ -203,8 +214,7 @@ MonoBehaviour:
     _moveDirection:
       value: {x: 0, y: 0, z: 0}
   _loockAtInstall:
-    _loockTransform:
-      value: {fileID: 0}
+    _loockTransform: {fileID: 0}
     _minLoockDistance: 0
     _rotateInstall:
       _rotateDirection:
@@ -228,6 +238,20 @@ MonoBehaviour:
     _isUseGravity: 0
   _bordersInstall:
     _zoneRange: 20
+--- !u!114 &2408633563325951068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5879414446769212800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0250038a8c7840318ceecc88ff68cc0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 4828065441531083015}
+  _animationEventDispatcher: {fileID: 1434824579333566691}
 --- !u!1001 &1696610920246370783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -402,10 +426,35 @@ PrefabInstance:
     - {fileID: 3310429949319040486, guid: a3029e28af10f4f458f5d25d6118a906, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1960997148460282, guid: a3029e28af10f4f458f5d25d6118a906, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1434824579333566691}
   m_SourcePrefab: {fileID: 100100000, guid: a3029e28af10f4f458f5d25d6118a906, type: 3}
+--- !u!1 &4780442273041933957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1960997148460282, guid: a3029e28af10f4f458f5d25d6118a906, type: 3}
+  m_PrefabInstance: {fileID: 4778738596848624255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1434824579333566691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4780442273041933957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78468fea786743bdb61df7d82dd80657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4782524890436215783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4376485179048344, guid: a3029e28af10f4f458f5d25d6118a906, type: 3}
+  m_PrefabInstance: {fileID: 4778738596848624255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4828065441531083015 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95075453375667064, guid: a3029e28af10f4f458f5d25d6118a906, type: 3}
   m_PrefabInstance: {fileID: 4778738596848624255}
   m_PrefabAsset: {fileID: 0}

@@ -18,6 +18,7 @@ namespace ZombieShooter
 		public const int MoveInput = 1; // MoveInput
 		public const int ServiceLocator = 2; // ServiceLocator
 		public const int ShootInput = 3; // ShootInput
+		public const int SpawnPoints = 4; // Transform[]
 
 
 		///Extensions
@@ -74,5 +75,23 @@ namespace ZombieShooter
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasShootInput(this IContext obj) => obj.HasValue(ShootInput);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Transform[] GetSpawnPoints(this IContext obj) => obj.ResolveValue<Transform[]>(SpawnPoints);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetSpawnPoints(this IContext obj, out Transform[] value) => obj.TryResolveValue(SpawnPoints, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddSpawnPoints(this IContext obj, Transform[] value) => obj.AddValue(SpawnPoints, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelSpawnPoints(this IContext obj) => obj.DelValue(SpawnPoints);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetSpawnPoints(this IContext obj, Transform[] value) => obj.SetValue(SpawnPoints, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasSpawnPoints(this IContext obj) => obj.HasValue(SpawnPoints);
     }
 }

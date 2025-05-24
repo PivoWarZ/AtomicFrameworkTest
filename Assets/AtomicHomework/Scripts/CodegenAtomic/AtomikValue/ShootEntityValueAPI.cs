@@ -25,6 +25,10 @@ namespace ZombieShooter
         public const int IsShootReady = 38; // ReactiveVariable<bool>
         public const int EnemyAttackDistance = 39; // ReactiveVariable<float>
         public const int IsAttackDistance = 40; // ReactiveVariable<bool>
+        public const int DamageColdown = 41; // ReactiveVariable<float>
+        public const int DealTickDamage = 42; // IEvent
+        public const int CanDamagePerSecond = 43; // AndExpression
+        public const int EnemyTarget = 44; // SceneEntity
 
 
         ///Extensions
@@ -225,5 +229,77 @@ namespace ZombieShooter
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetIsAttackDistance(this IEntity obj, ReactiveVariable<bool> value) => obj.SetValue(IsAttackDistance, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ReactiveVariable<float> GetDamageColdown(this IEntity obj) => obj.GetValue<ReactiveVariable<float>>(DamageColdown);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetDamageColdown(this IEntity obj, out ReactiveVariable<float> value) => obj.TryGetValue(DamageColdown, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddDamageColdown(this IEntity obj, ReactiveVariable<float> value) => obj.AddValue(DamageColdown, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasDamageColdown(this IEntity obj) => obj.HasValue(DamageColdown);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelDamageColdown(this IEntity obj) => obj.DelValue(DamageColdown);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetDamageColdown(this IEntity obj, ReactiveVariable<float> value) => obj.SetValue(DamageColdown, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEvent GetDealTickDamage(this IEntity obj) => obj.GetValue<IEvent>(DealTickDamage);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetDealTickDamage(this IEntity obj, out IEvent value) => obj.TryGetValue(DealTickDamage, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddDealTickDamage(this IEntity obj, IEvent value) => obj.AddValue(DealTickDamage, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasDealTickDamage(this IEntity obj) => obj.HasValue(DealTickDamage);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelDealTickDamage(this IEntity obj) => obj.DelValue(DealTickDamage);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetDealTickDamage(this IEntity obj, IEvent value) => obj.SetValue(DealTickDamage, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static AndExpression GetCanDamagePerSecond(this IEntity obj) => obj.GetValue<AndExpression>(CanDamagePerSecond);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetCanDamagePerSecond(this IEntity obj, out AndExpression value) => obj.TryGetValue(CanDamagePerSecond, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddCanDamagePerSecond(this IEntity obj, AndExpression value) => obj.AddValue(CanDamagePerSecond, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasCanDamagePerSecond(this IEntity obj) => obj.HasValue(CanDamagePerSecond);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelCanDamagePerSecond(this IEntity obj) => obj.DelValue(CanDamagePerSecond);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetCanDamagePerSecond(this IEntity obj, AndExpression value) => obj.SetValue(CanDamagePerSecond, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static SceneEntity GetEnemyTarget(this IEntity obj) => obj.GetValue<SceneEntity>(EnemyTarget);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetEnemyTarget(this IEntity obj, out SceneEntity value) => obj.TryGetValue(EnemyTarget, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddEnemyTarget(this IEntity obj, SceneEntity value) => obj.AddValue(EnemyTarget, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasEnemyTarget(this IEntity obj) => obj.HasValue(EnemyTarget);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelEnemyTarget(this IEntity obj) => obj.DelValue(EnemyTarget);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetEnemyTarget(this IEntity obj, SceneEntity value) => obj.SetValue(EnemyTarget, value);
     }
 }

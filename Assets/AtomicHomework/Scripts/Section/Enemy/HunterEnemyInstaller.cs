@@ -7,12 +7,9 @@ namespace ZombieShooter
 {
     public class HunterEnemyInstaller: SceneEntityInstallerBase
     {
-        public Event<IEntity> OnEntityTriggerEnter;
-        public Event<Collision> OnEntityCollisionEnter;
-        
         [SerializeField] private float Damage;
-        [SerializeField] private ReactiveVariable<float> _enemyAttackDistance = new(1f);
-        [SerializeField] private ReactiveVariable<bool> _isAttackDistance = new(false);
+        [SerializeField] private DamagePerSecondInstaller _damagePerSecond;
+        [SerializeField] private AttackRangeInstaller _attackRange;
         
         [SerializeField] private TransformInstall _enemyTransform;
         [SerializeField] private MoveInstall _moveInstall;
@@ -23,12 +20,7 @@ namespace ZombieShooter
 
         public override void Install(IEntity entity)
         {
-            entity.AddOnEntityTriggerEnter(OnEntityTriggerEnter);
-            entity.AddOnEntityCollisionEnter(OnEntityCollisionEnter);
-            
             entity.AddDamage(Damage);
-            entity.AddEnemyAttackDistance(_enemyAttackDistance);
-            entity.AddIsAttackDistance(_isAttackDistance);
             
             _hitPointsInstall.Install(entity);
             _enemyTransform.Install(entity);
@@ -36,13 +28,17 @@ namespace ZombieShooter
             _loockAtInstall.Install(entity);
             _deathMechanicsInstall.Install(entity);
             _bordersInstall.Install(entity);
-
+            _attackRange.Install(entity);
+            _damagePerSecond.Install(entity);
+            
+            entity.AddBehaviour(new DamagePerSecondBehavior());
             entity.AddBehaviour(new TransformPositionMoveBehavior());
             entity.AddBehaviour(new LoockAtBehavior());
             entity.AddBehaviour(new HunterEnemyBehavior());
             entity.AddBehaviour(new HitPointsBehavior());
             entity.AddBehaviour(new DeathMechanicsBehavior());
             entity.AddBehaviour(new BordersBehavior());
+            entity.AddBehaviour(new AttackRangeBehavior());
 
             SetCondition(entity);
         }
@@ -50,21 +46,11 @@ namespace ZombieShooter
         private void SetCondition(IEntity entity)
         {
             entity.GetCanMove().Append(entity.GetIsAlive());
+            entity.GetCanMove().Append(() => !entity.GetIsAttackDistance().Value);
+            
             entity.GetCanRotate().Append(entity.GetIsAlive());
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetEntity(out IEntity entity))
-            {
-                OnEntityTriggerEnter.Invoke(entity);
-            }
-        }
-        
-                
-        private void OnCollisionEnter(Collision collision)
-        {
-                OnEntityCollisionEnter.Invoke(collision);
+            
+            entity.GetCanDamagePerSecond().Append(entity.GetIsAttackDistance());
         }
     }
 }

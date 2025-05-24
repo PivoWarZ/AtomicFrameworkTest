@@ -95,6 +95,18 @@ MonoBehaviour:
     - id: 40
       name: IsAttackDistance
       type: ReactiveVariable<bool>
+    - id: 41
+      name: DamageColdown
+      type: ReactiveVariable<float>
+    - id: 42
+      name: DealTickDamage
+      type: IEvent
+    - id: 43
+      name: CanDamagePerSecond
+      type: AndExpression
+    - id: 44
+      name: EnemyTarget
+      type: SceneEntity
   - name: HitPoints
     indexes:
     - id: 20
@@ -104,10 +116,13 @@ MonoBehaviour:
       name: IsAlive
       type: ReactiveVariable<bool>
     - id: 22
-      name: OnHit
+      name: OnTakeDamageAction
       type: IEvent<float>
     - id: 3
       name: OnHitPointsEmpty
+      type: IEvent
+    - id: 46
+      name: OnTakeDamageEvent
       type: IEvent
   - name: Timer
     indexes:
@@ -165,3 +180,6 @@ MonoBehaviour:
     - id: 36
       name: AnimationEventDispatcher
       type: AnimationEventDispatcher
+    - id: 45
+      name: ParticlesContainer
+      type: ParticlesContainer
