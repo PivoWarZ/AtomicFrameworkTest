@@ -97,7 +97,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1649549970664807929}
   - {fileID: 6186486720209164713}
@@ -123,8 +123,7 @@ MonoBehaviour:
     _moveDirection:
       value: {x: 0, y: 0, z: 0}
   _loockAtInstall:
-    _loockTransform:
-      value: {fileID: 0}
+    _loockTransform: {fileID: 0}
     _minLoockDistance: 0
     _rotateInstall:
       _rotateDirection:
@@ -148,9 +147,20 @@ MonoBehaviour:
         loop: 0
   _hitPointsInstall:
     _hitpoints:
-      value: 100
+      value: 5
     IsAlive:
       value: 1
+  _deathMechanicsInstaller:
+    _isDestroyObject: 0
+    _isSetActive: 0
+    _isReturnToPool: 0
+    _poolTransform: {fileID: 0}
+    _isComponentHided: 0
+    _hidedComponent: {fileID: 0}
+    _isColliderEnabled: 1
+    _isTrigger: 0
+    _isKinematic: 0
+    _isUseGravity: 0
 --- !u!114 &1801379195063198965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +175,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 3435628029611942440}
   _animationEventDispatcher: {fileID: 4304882802941861587}
+  _particleContainer:
+    _shootParticle: {fileID: 3303317425812396234}
+    _takeDamageParticle: {fileID: 1977376666174438541}
+    _stunParticle: {fileID: 0}
+    _deathParticle: {fileID: 0}
 --- !u!54 &1847985737784961614
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -393,6 +408,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodExplosion
       objectReference: {fileID: 0}
+    - target: {fileID: 401440, guid: 9bf0b90e6d2294a4c8186ac5febf7653, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 401440, guid: 9bf0b90e6d2294a4c8186ac5febf7653, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 401440, guid: 9bf0b90e6d2294a4c8186ac5febf7653, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 401440, guid: 9bf0b90e6d2294a4c8186ac5febf7653, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 493160, guid: 9bf0b90e6d2294a4c8186ac5febf7653, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -510,6 +541,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19863356, guid: 9bf0b90e6d2294a4c8186ac5febf7653, type: 3}
+      propertyPath: InheritVelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19863356, guid: 9bf0b90e6d2294a4c8186ac5febf7653, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.02745098
       objectReference: {fileID: 0}
@@ -554,6 +589,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bf0b90e6d2294a4c8186ac5febf7653, type: 3}
+--- !u!198 &1977376666174438541 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19845262, guid: 9bf0b90e6d2294a4c8186ac5febf7653, type: 3}
+  m_PrefabInstance: {fileID: 1977376666189032451}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1977376666188540523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 493160, guid: 9bf0b90e6d2294a4c8186ac5febf7653, type: 3}
@@ -2376,11 +2416,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 437254, guid: b840149de5449b548821bfc78aa833ea, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 437254, guid: b840149de5449b548821bfc78aa833ea, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 437254, guid: b840149de5449b548821bfc78aa833ea, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2392,7 +2432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 437254, guid: b840149de5449b548821bfc78aa833ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 437254, guid: b840149de5449b548821bfc78aa833ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2442,5 +2482,10 @@ PrefabInstance:
 --- !u!4 &3303317425794023684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 437254, guid: b840149de5449b548821bfc78aa833ea, type: 3}
+  m_PrefabInstance: {fileID: 3303317425793608962}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3303317425812396234 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19854792, guid: b840149de5449b548821bfc78aa833ea, type: 3}
   m_PrefabInstance: {fileID: 3303317425793608962}
   m_PrefabAsset: {fileID: 0}

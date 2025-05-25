@@ -16,6 +16,8 @@ namespace ZombieShooter
         ///Keys
         public const int DeathSettings = 4; // DeathSettings
         public const int PoolTransform = 5; // Transform
+        public const int OnDeathAction = 47; // IEvent
+        public const int OnDeathEvent = 48; // IEvent
 
 
         ///Extensions
@@ -54,5 +56,41 @@ namespace ZombieShooter
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SetPoolTransform(this IEntity obj, Transform value) => obj.SetValue(PoolTransform, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEvent GetOnDeathAction(this IEntity obj) => obj.GetValue<IEvent>(OnDeathAction);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetOnDeathAction(this IEntity obj, out IEvent value) => obj.TryGetValue(OnDeathAction, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddOnDeathAction(this IEntity obj, IEvent value) => obj.AddValue(OnDeathAction, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasOnDeathAction(this IEntity obj) => obj.HasValue(OnDeathAction);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelOnDeathAction(this IEntity obj) => obj.DelValue(OnDeathAction);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetOnDeathAction(this IEntity obj, IEvent value) => obj.SetValue(OnDeathAction, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static IEvent GetOnDeathEvent(this IEntity obj) => obj.GetValue<IEvent>(OnDeathEvent);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool TryGetOnDeathEvent(this IEntity obj, out IEvent value) => obj.TryGetValue(OnDeathEvent, out value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AddOnDeathEvent(this IEntity obj, IEvent value) => obj.AddValue(OnDeathEvent, value);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasOnDeathEvent(this IEntity obj) => obj.HasValue(OnDeathEvent);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool DelOnDeathEvent(this IEntity obj) => obj.DelValue(OnDeathEvent);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetOnDeathEvent(this IEntity obj, IEvent value) => obj.SetValue(OnDeathEvent, value);
     }
 }

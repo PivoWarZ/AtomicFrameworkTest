@@ -19,6 +19,7 @@ namespace ZombieShooter
 		public const int ServiceLocator = 2; // ServiceLocator
 		public const int ShootInput = 3; // ShootInput
 		public const int SpawnPoints = 4; // Transform[]
+		public const int Spawner = 5; // SpawnerContextInstaller
 
 
 		///Extensions
@@ -93,5 +94,23 @@ namespace ZombieShooter
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool HasSpawnPoints(this IContext obj) => obj.HasValue(SpawnPoints);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static SpawnerContextInstaller GetSpawner(this IContext obj) => obj.ResolveValue<SpawnerContextInstaller>(Spawner);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool TryGetSpawner(this IContext obj, out SpawnerContextInstaller value) => obj.TryResolveValue(Spawner, out value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool AddSpawner(this IContext obj, SpawnerContextInstaller value) => obj.AddValue(Spawner, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool DelSpawner(this IContext obj) => obj.DelValue(Spawner);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void SetSpawner(this IContext obj, SpawnerContextInstaller value) => obj.SetValue(Spawner, value);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool HasSpawner(this IContext obj) => obj.HasValue(Spawner);
     }
 }

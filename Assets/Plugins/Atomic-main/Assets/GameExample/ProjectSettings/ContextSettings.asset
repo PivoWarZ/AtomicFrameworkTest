@@ -36,3 +36,6 @@ MonoBehaviour:
     - id: 4
       name: SpawnPoints
       type: 'Transform[]'
+    - id: 5
+      name: Spawner
+      type: SpawnerContextInstaller

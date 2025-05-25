@@ -6,7 +6,7 @@ namespace Atomic.Elements
     [Serializable]
     public class AndExpression : ExpressionBase<bool>, IPredicate
     {
-        public AndExpression()
+        public AndExpression(bool member)
         {
         }
 

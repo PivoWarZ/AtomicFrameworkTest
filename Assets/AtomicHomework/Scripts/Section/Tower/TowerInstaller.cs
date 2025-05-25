@@ -14,7 +14,7 @@ namespace ZombieShooter
         [SerializeField] private ShootInstall _shootInstall;
         [SerializeField] private HitPointsInstall _hitPointsInstall;
         [SerializeField] private float _hitPowerForDamage;
-        [SerializeField] private DeathMechanicsInstall _deathMechanicsInstall;
+        [SerializeField] private DeathMechanicsInstaller deathMechanicsInstaller;
         public override void Install(IEntity entity)
         {
             entity.AddOnEntityCollisionEnter(OnEntityCollisionEnter);
@@ -25,7 +25,7 @@ namespace ZombieShooter
             _timerInstall.Install(entity);
             _shootInstall.Install(entity);
             _hitPointsInstall.Install(entity);
-            _deathMechanicsInstall.Install(entity);
+            deathMechanicsInstaller.Install(entity);
             
             entity.AddBehaviour(new CycleTimerBehavior());
             entity.AddBehaviour(new LoockAtBehavior());

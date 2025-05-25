@@ -1,20 +1,30 @@
+using System;
+using System.Collections.Generic;
 using Atomic.Contexts;
+using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
+using Event = Atomic.Elements.Event;
+
 
 namespace ZombieShooter
 {
-    public class SpawnerContextInstaller: SceneContextInstallerBase
+    [Serializable]
+    public class SpawnerContextInstaller: IContextInstaller
     {
-        [SerializeField] private SceneEntity[] _enemies;
-        [SerializeField] private float  _spawnTime;
-        [SerializeField] private Transform[] _spawnPoints;
+        public Event OnSpawn;
+        public Event<IEntity> OnSpawnEvent;
+        public AndExpression CanSpawn = new(true);
         
-        public override void Install(IContext context)
+        [SerializeField] private List<SceneEntity> _enemies;
+        [SerializeField] private ReactiveVariable<float> _spawnTime;
+        [SerializeField] private List<Transform> _spawnPoints;
+        public void Install(IContext context)
         {
-            context.AddSpawnPoints(_spawnPoints);
-            
-            context.AddSystem(new EnemySpawnerContextBehavior());
+            var container = context.GetServiceLocator().EnemyContainer;
+            context.AddSystem(new EnemySpawnerContextBehavior(_enemies, _spawnTime, _spawnPoints, container));
         }
+        
+        public ReactiveVariable<float> SpawnTime => _spawnTime;
     }
 }

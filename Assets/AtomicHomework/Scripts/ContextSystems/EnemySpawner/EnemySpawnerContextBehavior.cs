@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Atomic.Contexts;
+using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
 
@@ -6,60 +8,65 @@ namespace ZombieShooter
 {
     public class EnemySpawnerContextBehavior: IContextInit, IContextEnable, IContextUpdate, IContextDispose
     {
-        private SceneEntity _enemyPrefab;
-        private Transform[] _spawnPoints;
-        private Transform _character;
+        private List<SceneEntity> _enemiesPrefabs;
+        private ReactiveVariable<float> _spawnTime;
+        private List<Transform> _spawnPoints;
         private Transform _container;
-        private TimerInstall _timer;
-        private float _countdown;
-        private float _spawnSpread;
-        
-        public void Init(IContext context)
+        private Timer _spawnTimer;
+        private SpawnerContextInstaller _spawner;
+
+        public EnemySpawnerContextBehavior(List<SceneEntity>  entities, ReactiveVariable<float> spawnTime, List<Transform> spawnPoints, Transform container)
         {
-            //_enemyPrefab = context.GetSpawnerLocator().Enemy;
-            //_spawnPoints = context.GetSpawnerLocator().SpawnPoints;
-            //_character = context.GetSpawnerLocator().Character;
-            //_timer = context.GetTimerContext();
-            //_container = context.GetSpawnerLocator().Container;
-            _countdown = Random.Range(_timer.Cooldown, _timer.Cooldown + _spawnSpread);
-            _spawnSpread = _timer.Cooldown;
+            _enemiesPrefabs = entities;
+            _spawnTime = spawnTime;
+            _spawnPoints = spawnPoints;
+            _container = container;
         }
-        
-        public void Enable(IContext context)
+
+        void IContextInit.Init(IContext context)
         {
-            _timer.OnTimerEnd.Subscribe(SpawnEnemy);
-            _timer.OnTimerStart.Invoke(_countdown);
+            _spawner = context.GetSpawner();
+            _spawnTimer = new Timer();
+            _spawnTimer.Loop = true;
+            _spawnTimer.Duration = _spawnTime.Value;
+        }
+
+        void IContextEnable.Enable(IContext context)
+        {
+            _spawnTimer.OnEnded += SpawnEnemy;
+            context.GetSpawner().OnSpawn.Subscribe(StartTimer);
+        }
+
+        private void StartTimer()
+        {
+            _spawnTimer.Start();
         }
 
         private void SpawnEnemy()
         {
-            Transform randomPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
-            var enemy = SceneEntity.Instantiate(_enemyPrefab, randomPoint);
-            enemy.GetEntityTransform().SetParent(_container);
-            //enemy.GetLoockAtTransform() = _character;
-            _timer.OnTimerStart.Invoke(_timer.Cooldown);
-            _countdown = Random.Range(_timer.Cooldown, _timer.Cooldown + _spawnSpread);
-            _spawnSpread = _timer.Cooldown;
-        }
-
-        public void Update(IContext context, float deltaTime)
-        {
-            if (_countdown <= 0)
+            if (!_spawner.CanSpawn.Value)
             {
                 return;
             }
 
-            _countdown -= deltaTime;
+            Transform randomPoint = _spawnPoints[Random.Range(0, _spawnPoints.Count)];
+            var prefab = _enemiesPrefabs[Random.Range(0, _enemiesPrefabs.Count-1)];
+            Debug.Log($"Spawning {prefab.name}, {randomPoint.name}");
+            SceneEntity enemy = SceneEntity.Instantiate(prefab, randomPoint);
+            enemy.GetEntityTransform().SetParent(_container);
             
-            if (_countdown <= 0)
-            {
-                _timer.OnTimerEnd.Invoke();
-            }
+            _spawner.OnSpawnEvent.Invoke(enemy);
         }
 
-        public void Dispose(IContext context)
+        void IContextUpdate.Update(IContext context, float deltaTime)
         {
-            _timer.OnTimerEnd.Unsubscribe(SpawnEnemy);
+            _spawnTimer.Tick(deltaTime);
+        }
+
+        void IContextDispose.Dispose(IContext context)
+        {
+            _spawnTimer.OnEnded -= SpawnEnemy;
+            context.GetSpawner().OnSpawn.Unsubscribe(StartTimer);
         }
     }
 }

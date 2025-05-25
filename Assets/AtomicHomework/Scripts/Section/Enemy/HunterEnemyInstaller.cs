@@ -15,7 +15,7 @@ namespace ZombieShooter
         [SerializeField] private MoveInstall _moveInstall;
         [SerializeField] private LoockAtInstall _loockAtInstall;
         [SerializeField] private HitPointsInstall _hitPointsInstall;
-        [SerializeField] private DeathMechanicsInstall _deathMechanicsInstall;
+        [SerializeField] private DeathMechanicsInstaller deathMechanicsInstaller;
         [SerializeField] private BordersInstall _bordersInstall;
 
         public override void Install(IEntity entity)
@@ -26,7 +26,7 @@ namespace ZombieShooter
             _enemyTransform.Install(entity);
             _moveInstall.Install(entity);
             _loockAtInstall.Install(entity);
-            _deathMechanicsInstall.Install(entity);
+            deathMechanicsInstaller.Install(entity);
             _bordersInstall.Install(entity);
             _attackRange.Install(entity);
             _damagePerSecond.Install(entity);
@@ -39,7 +39,7 @@ namespace ZombieShooter
             entity.AddBehaviour(new DeathMechanicsBehavior());
             entity.AddBehaviour(new BordersBehavior());
             entity.AddBehaviour(new AttackRangeBehavior());
-
+            
             SetCondition(entity);
         }
 
@@ -50,7 +50,8 @@ namespace ZombieShooter
             
             entity.GetCanRotate().Append(entity.GetIsAlive());
             
-            entity.GetCanDamagePerSecond().Append(entity.GetIsAttackDistance());
+            entity.GetCanDamagePerSecond().Append(() => entity.GetIsAttackDistance().Value);
+            entity.GetCanDamagePerSecond().Append(() => entity.GetLoockAtTransform().gameObject.GetComponent<IEntity>().GetHitPoints().Value > 0f);
         }
     }
 }

@@ -19,12 +19,11 @@ namespace ZombieShooter
             _playerTransform = entity.GetEntityTransform();
             _animator = entity.GetAnimator();
             _onShootAction = entity.GetOnShootAction();
-            _animationEventDispatcher = entity.GetAnimationEventDispatcher();
         }
 
         void IEntityEnable.Enable(IEntity entity)
         {
-            _animationEventDispatcher.OnEventReceived += EventReceived;
+            entity.GetAnimationEventDispatcher().OnEventReceived += EventReceived;
             entity.GetMoveDirection().Subscribe(Move);
             entity.GetOnShootRequest().Subscribe(ShootRequest);
             entity.GetOnShootEvent().Subscribe(ShootEvent);
@@ -55,6 +54,10 @@ namespace ZombieShooter
             {
                 _onShootAction.Invoke();
             }
+            else if (eventName == "Death")
+            {
+                _playerEntity.GetOnDeathAction().Invoke();
+            }
         }
 
         private void ShootRequest()
@@ -81,7 +84,7 @@ namespace ZombieShooter
         
         void IEntityDispose.Dispose(IEntity entity)
         {
-            _animationEventDispatcher.OnEventReceived -= EventReceived;
+            entity.GetAnimationEventDispatcher().OnEventReceived -= EventReceived;
             entity.GetOnShootRequest().Unsubscribe(ShootRequest);
             entity.GetOnShootEvent().Unsubscribe(ShootEvent);
             entity.GetMoveDirection().Unsubscribe(Move);

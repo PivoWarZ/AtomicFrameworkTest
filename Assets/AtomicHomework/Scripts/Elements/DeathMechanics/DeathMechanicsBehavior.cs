@@ -1,3 +1,4 @@
+using Atomic.Elements;
 using Atomic.Entities;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ namespace ZombieShooter
 {
     public class DeathMechanicsBehavior: IEntityInit, IEntityEnable, IEntityDispose
     {
+        private IEvent _deathEvent;
         private GameObject _gameObject;
         private DeathSettings _deathSettings;
         private Transform _poolTransform;
@@ -15,12 +17,13 @@ namespace ZombieShooter
             _deathSettings = entity.GetDeathSettings();
             _entityTransform = entity.GetEntityTransform();
             _gameObject = entity.GetEntityTransform().gameObject;
+            _deathEvent = entity.GetOnDeathEvent();
             _poolTransform = _deathSettings.PoolTransform;
         }
 
         void IEntityEnable.Enable(IEntity entity)
         {
-            entity.GetOnHitPointsEmpty().Subscribe(DeathMechanics);
+            entity.GetOnDeathAction().Subscribe(DeathMechanics);
         }
 
         private void DeathMechanics()
@@ -52,7 +55,8 @@ namespace ZombieShooter
             {
                 SetRigidbody(rigidBody);
             }
-
+            
+            _deathEvent?.Invoke();
         }
 
         private void SetRigidbody(Rigidbody rigidBody)

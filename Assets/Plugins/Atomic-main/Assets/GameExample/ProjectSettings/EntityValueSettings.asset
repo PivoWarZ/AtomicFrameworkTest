@@ -162,6 +162,12 @@ MonoBehaviour:
     - id: 5
       name: PoolTransform
       type: Transform
+    - id: 47
+      name: OnDeathAction
+      type: IEvent
+    - id: 48
+      name: OnDeathEvent
+      type: IEvent
   - name: Borders
     indexes:
     - id: 31

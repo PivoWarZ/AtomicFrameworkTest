@@ -2,11 +2,12 @@ using System;
 using Atomic.Entities;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Event = Atomic.Elements.Event;
 
 namespace ZombieShooter
 {
     [Serializable]
-    public class DeathMechanicsInstall: IEntityInstaller
+    public class DeathMechanicsInstaller: IEntityInstaller
     {
         [NonSerialized] public DeathSettings DeathSettings;
         
@@ -34,6 +35,8 @@ namespace ZombieShooter
         {
             DeathSettings = SetDeathSettings();
             entity.AddDeathSettings(DeathSettings);
+            entity.AddOnDeathAction(new Event());
+            entity.AddOnDeathEvent(new Event());
         }
 
         private DeathSettings SetDeathSettings()

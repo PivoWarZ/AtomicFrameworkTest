@@ -10,7 +10,7 @@ namespace ZombieShooter
     public class DamagePerSecondInstaller: IEntityInstaller
     {
         [SerializeField] private ReactiveVariable<float> _damageColdown = new(1f);
-        [SerializeField] private AndExpression _canDamagePerSecond;
+        [SerializeField] private AndExpression _canDamagePerSecond = new(true);
         public void Install(IEntity entity)
         {
             entity.AddDamageColdown(_damageColdown);

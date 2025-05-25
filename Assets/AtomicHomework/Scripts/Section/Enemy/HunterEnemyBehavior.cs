@@ -11,7 +11,7 @@ namespace ZombieShooter
         
         void IEntityInit.Init(IEntity entity)
         {
-            _target = entity.GetLoockAtTransform().gameObject.GetComponent<IEntity>();
+            //_target = entity.GetLoockAtTransform().Value.gameObject.GetComponent<IEntity>();
             _enemyTransform = entity.GetEntityTransform();
             _damage = entity.GetDamage();
         }
